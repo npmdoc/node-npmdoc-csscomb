@@ -1,0 +1,904 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="http://csscomb.com/"
+
+    >csscomb (v4.0.1)</a>
+</h1>
+<h4>CSS coding style formatter</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.csscomb">module csscomb</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.detectInFile">
+            function <span class="apidocSignatureSpan">csscomb.</span>detectInFile
+            <span class="apidocSignatureSpan">(file, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.detectInString">
+            function <span class="apidocSignatureSpan">csscomb.</span>detectInString
+            <span class="apidocSignatureSpan">(text, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.getConfig">
+            function <span class="apidocSignatureSpan">csscomb.</span>getConfig
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.getCustomConfig">
+            function <span class="apidocSignatureSpan">csscomb.</span>getCustomConfig
+            <span class="apidocSignatureSpan">(configPath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.getCustomConfigPath">
+            function <span class="apidocSignatureSpan">csscomb.</span>getCustomConfigPath
+            <span class="apidocSignatureSpan">(configPath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.plugin">
+            function <span class="apidocSignatureSpan">csscomb.</span>plugin
+            <span class="apidocSignatureSpan">(methods)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.</span>errors</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.</span>plugin.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.csscomb.errors">module csscomb.errors</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.configParsingError">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>configParsingError
+            <span class="apidocSignatureSpan">(configPath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.implementSetValue">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>implementSetValue
+            <span class="apidocSignatureSpan">(valueType)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.missingName">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>missingName
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.missingSetValue">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>missingSetValue
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.missingSyntax">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>missingSyntax
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.missingTemplateFile">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>missingTemplateFile
+            <span class="apidocSignatureSpan">(file)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.twoPluginsWithSameName">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>twoPluginsWithSameName
+            <span class="apidocSignatureSpan">(pluginName)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.unacceptableBoolean">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableBoolean
+            <span class="apidocSignatureSpan">(pattern)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.unacceptableNumber">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableNumber
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.unacceptableString">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableString
+            <span class="apidocSignatureSpan">(pattern)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.errors.unacceptableValueType">
+            function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableValueType
+            <span class="apidocSignatureSpan">(valueType, accepts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.csscomb.plugin">module csscomb.plugin</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.plugin.plugin">
+            function <span class="apidocSignatureSpan">csscomb.</span>plugin
+            <span class="apidocSignatureSpan">(methods)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.csscomb.plugin.prototype">module csscomb.plugin.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.csscomb.plugin.prototype.validate">
+            function <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>validate
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>accepts</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>lint</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>name</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>process</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>syntax</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>value</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>value_</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.csscomb" id="apidoc.module.csscomb">module csscomb</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.detectInFile" id="apidoc.element.csscomb.detectInFile">
+        function <span class="apidocSignatureSpan">csscomb.</span>detectInFile
+        <span class="apidocSignatureSpan">(file, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function detectInFile(file, options) {
+  var stylesheet = fs.readFileSync(file, &#x27;utf8&#x27;);
+  return CSScomb.detectInString(stylesheet, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.detectInString" id="apidoc.element.csscomb.detectInString">
+        function <span class="apidocSignatureSpan">csscomb.</span>detectInString
+        <span class="apidocSignatureSpan">(text, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function detectInString(text, options) {
+  var result;
+  var handlers = [];
+
+  if (!text) return text;
+
+  var optionNames = fs.readdirSync(__dirname + &#x27;/options&#x27;);
+  optionNames.forEach(function (option) {
+    option = option.slice(0, -3);
+    if (options &#x26;&#x26; options.indexOf(option) &#x3c; 0) return;
+    try {
+      handlers.push(getHandler(option));
+    } catch (e) {
+      let message = `\nFailed to load &#x22;${option}&#x22; option:\n${e.message}`;
+      console.warn(message);
+    }
+  });
+
+  var tree = cssToAST(text);
+  var detectedOptions = detectInTree(tree, handlers);
+  result = getDetectedOptions(detectedOptions, handlers);
+
+  // Handle conflicting options with spaces around braces:
+  var blockIndent = result[&#x27;block-indent&#x27;];
+  var spaceAfterOpeningBrace = result[&#x27;space-after-opening-brace&#x27;];
+
+  if (typeof blockIndent === &#x27;string&#x27; &#x26;&#x26; spaceAfterOpeningBrace &#x26;&#x26; spaceAfterOpeningBrace.indexOf(&#x27;\n&#x27;) &#x3e; -1) {
+    result[&#x27;space-after-opening-brace&#x27;] = &#x27;\n&#x27;;
+  }
+
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.getConfig" id="apidoc.element.csscomb.getConfig">
+        function <span class="apidocSignatureSpan">csscomb.</span>getConfig
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getConfig(name) {
+  const DEFAULT_CONFIG_NAME = &#x27;csscomb&#x27;;
+  name = name || DEFAULT_CONFIG_NAME;
+
+  if (typeof name !== &#x27;string&#x27;) {
+    throw new Error(&#x27;Config name must be a string.&#x27;);
+  }
+
+  let CONFIG_DIR_PATH = &#x27;../config&#x27;;
+  let dir = `${__dirname}/${CONFIG_DIR_PATH}`;
+  let availableConfigsNames = fs.readdirSync(dir).map(function (configFileName) {
+    return configFileName.split(&#x27;.&#x27;)[0]; // Strip file extension(s)
+  });
+
+  if (availableConfigsNames.indexOf(name) &#x3c; 0) {
+    let configsNamesAsString = availableConfigsNames.map(function (configName) {
+      return &#x27;\&#x27;&#x27; + configName + &#x27;\&#x27;&#x27;;
+    }).join(&#x27;, &#x27;);
+    let message = `&#x22;${name}&#x22; is not a valid config name. Try one
+                   of the following: ${configsNamesAsString}.`;
+    throw new Error(format(message));
+  }
+
+  return require(CONFIG_DIR_PATH + &#x27;/&#x27; + name + &#x27;.json&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.getCustomConfig" id="apidoc.element.csscomb.getCustomConfig">
+        function <span class="apidocSignatureSpan">csscomb.</span>getCustomConfig
+        <span class="apidocSignatureSpan">(configPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getCustomConfig(configPath) {
+  var config;
+  configPath = configPath || CSScomb.getCustomConfigPath();
+
+  try {
+    config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+  } catch (e) {
+    config = null;
+  }
+
+  return config;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.getCustomConfigPath" id="apidoc.element.csscomb.getCustomConfigPath">
+        function <span class="apidocSignatureSpan">csscomb.</span>getCustomConfigPath
+        <span class="apidocSignatureSpan">(configPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getCustomConfigPath(configPath) {
+  var HOME = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+
+  configPath = configPath || path.join(process.cwd(), &#x27;.csscomb.json&#x27;);
+
+  // If we&#x27;ve finally found a config, return its path:
+  if (fs.existsSync(configPath)) return fs.realpathSync(configPath);
+
+  // If we are in HOME dir already and yet no config file, return a default
+  // one from our package.
+  // If project is located not under HOME, compare to root instead.
+  // Since there appears to be no good way to get root path in
+  // Windows, assume that if current dir has no parent dir, we&#x27;re in
+  // root.
+  var dirname = path.dirname(configPath);
+  var parentDirname = path.dirname(dirname);
+  if (dirname === HOME || dirname === parentDirname) return null;
+
+  // If there is no config in this directory, go one level up and look for
+  // a config there:
+  configPath = path.join(parentDirname, &#x27;.csscomb.json&#x27;);
+  return CSScomb.getCustomConfigPath(configPath);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.plugin" id="apidoc.element.csscomb.plugin">
+        function <span class="apidocSignatureSpan">csscomb.</span>plugin
+        <span class="apidocSignatureSpan">(methods)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plugin = function (methods) {
+  for (let method in methods) {
+    this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+  }
+
+  this.validate();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.csscomb.errors" id="apidoc.module.csscomb.errors">module csscomb.errors</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.configParsingError" id="apidoc.element.csscomb.errors.configParsingError">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>configParsingError
+        <span class="apidocSignatureSpan">(configPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">configParsingError(configPath) {
+  return `Error parsing configuration file ${configPath}.`;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.implementSetValue" id="apidoc.element.csscomb.errors.implementSetValue">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>implementSetValue
+        <span class="apidocSignatureSpan">(valueType)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">implementSetValue(valueType) {
+  if (typeof valueType === &#x27;undefined&#x27;) throw new Error();
+
+  return format(`If you see this message and you are not
+      a developer adding a new option, please open an issue here:
+      https://github.com/csscomb/core/issues/new\n
+      For option to accept values of type &#x22;${valueType}&#x22;
+      you need to implement custom \`setValue()\` method.`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (valueType = &#x27;string&#x27;) {
+  if (!value.match(pattern)) throw new Error(Errors.unacceptableString(pattern));
+  this.value_ = value;
+  return this.value_;
+}
+
+throw new Error(Errors.<span class="apidocCodeKeywordSpan">implementSetValue</span>(valueType));
+  },
+
+  validate() {
+if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+
+if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.missingName" id="apidoc.element.csscomb.errors.missingName">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>missingName
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">missingName() {
+  return &#x27;Plugin must have a valid \`name\` property.&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      return this.value_;
+    }
+
+    throw new Error(Errors.implementSetValue(valueType));
+  },
+
+  validate() {
+    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.<span class="apidocCodeKeywordSpan">missingName
+</span>());
+
+    if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
+
+    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+.missingSetValue());
+  }
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.missingSetValue" id="apidoc.element.csscomb.errors.missingSetValue">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>missingSetValue
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">missingSetValue() {
+  return format(`Plugin must either implemet \`setValue()\` method
+      or provide \`accepts\` object with acceptable values.`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  },
+
+  validate() {
+    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+
+    if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
+
+    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+.<span class="apidocCodeKeywordSpan">missingSetValue</span>());
+  }
+};
+
+module.exports = Plugin;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.missingSyntax" id="apidoc.element.csscomb.errors.missingSyntax">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>missingSyntax
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">missingSyntax() {
+  return &#x27;Plugin must list supported syntaxes.&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    throw new Error(Errors.implementSetValue(valueType));
+  },
+
+  validate() {
+    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+
+    if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.<span class="apidocCodeKeywordSpan">missingSyntax
+</span>());
+
+    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+.missingSetValue());
+  }
+};
+
+module.exports = Plugin;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.missingTemplateFile" id="apidoc.element.csscomb.errors.missingTemplateFile">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>missingTemplateFile
+        <span class="apidocSignatureSpan">(file)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">missingTemplateFile(file) {
+  return format(`Template configuration file ${file}
+                 was not found.`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.twoPluginsWithSameName" id="apidoc.element.csscomb.errors.twoPluginsWithSameName">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>twoPluginsWithSameName
+        <span class="apidocSignatureSpan">(pluginName)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">twoPluginsWithSameName(pluginName) {
+  if (typeof pluginName === &#x27;undefined&#x27;) throw new Error();
+
+  return format(`You&#x27;re trying to use one plugin twice:
+      ${pluginName}. Please make sure there are not two different
+      plugins with the same name.`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {Object} options
+   * @return {Comb}
+   */
+  use(options) {
+// Check whether plugin with the same is already used.
+let pluginName = options.name;
+if (this._pluginAlreadyUsed(pluginName)) {
+  if (this.verbose) console.warn(Errors.<span class="apidocCodeKeywordSpan">twoPluginsWithSameName</span>(pluginName));
+  return;
+}
+
+let plugin = new Plugin(options);
+
+plugin.syntax.forEach(function (s) {
+  this.supportedSyntaxes.add(s);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.unacceptableBoolean" id="apidoc.element.csscomb.errors.unacceptableBoolean">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableBoolean
+        <span class="apidocSignatureSpan">(pattern)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unacceptableBoolean(pattern) {
+  if (typeof pattern === &#x27;undefined&#x27;) throw new Error();
+
+  return `Value must be one of the following: ${pattern.join(&#x27;, &#x27;)}.`;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.value_ = this.setValue(value);
+  return this.value_;
+}
+
+if (!pattern) throw new Error(Errors.unacceptableValueType(valueType, this.accepts));
+
+if (valueType === &#x27;boolean&#x27;) {
+  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableBoolean</span>(pattern
+));
+  this.value_ = value;
+  return this.value_;
+}
+
+if (valueType === &#x27;number&#x27;) {
+  if (value !== parseInt(value)) throw new Error(Errors.unacceptableNumber());
+  this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.unacceptableNumber" id="apidoc.element.csscomb.errors.unacceptableNumber">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableNumber
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unacceptableNumber() {
+  return &#x27;Value must be an integer.&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (valueType === &#x27;boolean&#x27;) {
+  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+  this.value_ = value;
+  return this.value_;
+}
+
+if (valueType === &#x27;number&#x27;) {
+  if (value !== parseInt(value)) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableNumber</span>());
+  this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+  return this.value_;
+}
+
+if (valueType = &#x27;string&#x27;) {
+  if (!value.match(pattern)) throw new Error(Errors.unacceptableString(pattern));
+  this.value_ = value;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.unacceptableString" id="apidoc.element.csscomb.errors.unacceptableString">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableString
+        <span class="apidocSignatureSpan">(pattern)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unacceptableString(pattern) {
+  if (typeof pattern === &#x27;undefined&#x27;) throw new Error();
+
+  return `Value must match pattern ${pattern}.`;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (valueType === &#x27;number&#x27;) {
+    if (value !== parseInt(value)) throw new Error(Errors.unacceptableNumber());
+    this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+    return this.value_;
+  }
+
+  if (valueType = &#x27;string&#x27;) {
+    if (!value.match(pattern)) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableString</span>(pattern));
+    this.value_ = value;
+    return this.value_;
+  }
+
+  throw new Error(Errors.implementSetValue(valueType));
+},
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.errors.unacceptableValueType" id="apidoc.element.csscomb.errors.unacceptableValueType">
+        function <span class="apidocSignatureSpan">csscomb.errors.</span>unacceptableValueType
+        <span class="apidocSignatureSpan">(valueType, accepts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unacceptableValueType(valueType, accepts) {
+  if (typeof valueType === &#x27;undefined&#x27; || typeof accepts === &#x27;undefined&#x27;) throw new Error();
+
+  return format(`The option does not accept values of type
+      ${valueType}.\nValue\&#x27;s type must be one the following:
+      ${Object.keys(accepts).join(&#x27;, &#x27;)}.`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+let pattern = this.accepts &#x26;&#x26; this.accepts[valueType];
+
+if (this.setValue) {
+  this.value_ = this.setValue(value);
+  return this.value_;
+}
+
+if (!pattern) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableValueType</span>(valueType, this.accepts));
+
+if (valueType === &#x27;boolean&#x27;) {
+  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+  this.value_ = value;
+  return this.value_;
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.csscomb.plugin" id="apidoc.module.csscomb.plugin">module csscomb.plugin</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.plugin.plugin" id="apidoc.element.csscomb.plugin.plugin">
+        function <span class="apidocSignatureSpan">csscomb.</span>plugin
+        <span class="apidocSignatureSpan">(methods)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">plugin = function (methods) {
+  for (let method in methods) {
+    this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+  }
+
+  this.validate();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.csscomb.plugin.prototype" id="apidoc.module.csscomb.plugin.prototype">module csscomb.plugin.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.csscomb.plugin.prototype.validate" id="apidoc.element.csscomb.plugin.prototype.validate">
+        function <span class="apidocSignatureSpan">csscomb.plugin.prototype.</span>validate
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validate() {
+  if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+
+  if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
+
+  if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors.missingSetValue());
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+let Errors = require(&#x27;./errors&#x27;);
+
+let Plugin = function (methods) {
+for (let method in methods) {
+  this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+}
+
+this.<span class="apidocCodeKeywordSpan">validate</span>();
+};
+
+Plugin.prototype = {
+/**
+ * Plugin&#x27;s name.
+ * @type {String}
+ */
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
