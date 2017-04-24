@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://csscomb.com/"
-
-    >csscomb (v4.0.1)</a>
+    <a href="http://csscomb.com/">csscomb (v4.0.1)</a>
 </h1>
 <h4>CSS coding style formatter</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.csscomb">module csscomb</a><ol>
 
@@ -1872,17 +1865,17 @@
   let comb = new Comb();
 
   // Add plugins.
-  fs.readdirSync(__dirname + &#x27;/options&#x27;).map(function (option) {
-    return require(&#x27;./options/&#x27; + option);
+  fs.readdirSync(__dirname + '/options').map(function (option) {
+    return require('./options/' + option);
   }).forEach(function (option) {
     comb.use(option);
   });
 
   // If config was passed, configure:
-  if (typeof config === &#x27;string&#x27;) {
+  if (typeof config === 'string') {
     config = CSScomb.getConfig(config);
   }
-  if (typeof config === &#x27;object&#x27;) {
+  if (typeof config === 'object') {
     comb.configure(config);
   }
 
@@ -1902,19 +1895,19 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function detectInFile(file, options) {
-  var stylesheet = fs.readFileSync(file, &#x27;utf8&#x27;);
+  var stylesheet = fs.readFileSync(file, 'utf8');
   return CSScomb.detectInString(stylesheet, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 function displayHelp() {
-var help = [&#x27;NAME&#x27;, &#x27;    csscomb — Lint and fix style errors in css files&#x27;, &#x27;&#x27;, &#x27;SYNOPSIS&#x27
-;, &#x27;    csscomb [options] file.css&#x27;, &#x27;    cat file.css | csscomb [options] -&#x27;, &#x27;&#x27;, &#x27;OPTIONS&#
-x27;, &#x27;    -c, --config [path]&#x27;, &#x27;        Path to configuration file.&#x27;, &#x27;    -d, --detect&#x27;, &#x27;
-Run the tool in detect mode, returning detected options.&#x27;, &#x27;    -l, --lint&#x27;, &#x27;        Run the tool in linter
- mode, without modifying files.&#x27;, &#x27;    -h, --help&#x27;, &#x27;        Display help message.&#x27;, &#x27;    -v, --verbose
-&#x27;, &#x27;        Whether to print logging info.&#x27;];
-process.stdout.write(help.join(&#x27;\n&#x27;));
+var help = ['NAME', '    csscomb â€” Lint and fix style errors in css files', '', 'SYNOPSIS'
+;, '    csscomb [options] file.css', '    cat file.css | csscomb [options] -', '', 'OPTIONS&amp;#
+x27;, '    -c, --config [path]', '        Path to configuration file.', '    -d, --detect', '
+Run the tool in detect mode, returning detected options.', '    -l, --lint', '        Run the tool in linter
+ mode, without modifying files.', '    -h, --help', '        Display help message.', '    -v, --verbose
+', '        Whether to print logging info.'];
+process.stdout.write(help.join('\n'));
 }
 
 function detectConfig() {
@@ -1923,7 +1916,7 @@ return JSON.stringify(config, false, 4);
 }
 
 function getConfig() {
-var configPath = options.config &#x26;&#x26; path.resolve(process.cwd(), options.config) || Comb.getCustomConfigPath();
+var configPath = options.config &amp;&amp; path.resolve(process.cwd(), options.config) || Comb.getCustomConfigPath();
 
 var config;
 ...</pre></li>
@@ -1944,14 +1937,14 @@ var config;
 
   if (!text) return text;
 
-  var optionNames = fs.readdirSync(__dirname + &#x27;/options&#x27;);
+  var optionNames = fs.readdirSync(__dirname + '/options');
   optionNames.forEach(function (option) {
     option = option.slice(0, -3);
-    if (options &#x26;&#x26; options.indexOf(option) &#x3c; 0) return;
+    if (options &amp;&amp; options.indexOf(option) &lt; 0) return;
     try {
       handlers.push(getHandler(option));
     } catch (e) {
-      let message = `\nFailed to load &#x22;${option}&#x22; option:\n${e.message}`;
+      let message = `\nFailed to load "${option}" option:\n${e.message}`;
       console.warn(message);
     }
   });
@@ -1961,11 +1954,11 @@ var config;
   result = getDetectedOptions(detectedOptions, handlers);
 
   // Handle conflicting options with spaces around braces:
-  var blockIndent = result[&#x27;block-indent&#x27;];
-  var spaceAfterOpeningBrace = result[&#x27;space-after-opening-brace&#x27;];
+  var blockIndent = result['block-indent'];
+  var spaceAfterOpeningBrace = result['space-after-opening-brace'];
 
-  if (typeof blockIndent === &#x27;string&#x27; &#x26;&#x26; spaceAfterOpeningBrace &#x26;&#x26; spaceAfterOpeningBrace.indexOf(&#x27;\n&#x27;) &#x3e; -1) {
-    result[&#x27;space-after-opening-brace&#x27;] = &#x27;\n&#x27;;
+  if (typeof blockIndent === 'string' &amp;&amp; spaceAfterOpeningBrace &amp;&amp; spaceAfterOpeningBrace.indexOf('\n') &gt; -1) {
+    result['space-after-opening-brace'] = '\n';
   }
 
   return result;
@@ -1983,29 +1976,29 @@ var config;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getConfig(name) {
-  const DEFAULT_CONFIG_NAME = &#x27;csscomb&#x27;;
+  const DEFAULT_CONFIG_NAME = 'csscomb';
   name = name || DEFAULT_CONFIG_NAME;
 
-  if (typeof name !== &#x27;string&#x27;) {
-    throw new Error(&#x27;Config name must be a string.&#x27;);
+  if (typeof name !== 'string') {
+    throw new Error('Config name must be a string.');
   }
 
-  let CONFIG_DIR_PATH = &#x27;../config&#x27;;
+  let CONFIG_DIR_PATH = '../config';
   let dir = `${__dirname}/${CONFIG_DIR_PATH}`;
   let availableConfigsNames = fs.readdirSync(dir).map(function (configFileName) {
-    return configFileName.split(&#x27;.&#x27;)[0]; // Strip file extension(s)
+    return configFileName.split('.')[0]; // Strip file extension(s)
   });
 
-  if (availableConfigsNames.indexOf(name) &#x3c; 0) {
+  if (availableConfigsNames.indexOf(name) &lt; 0) {
     let configsNamesAsString = availableConfigsNames.map(function (configName) {
-      return &#x27;\&#x27;&#x27; + configName + &#x27;\&#x27;&#x27;;
-    }).join(&#x27;, &#x27;);
-    let message = `&#x22;${name}&#x22; is not a valid config name. Try one
+      return '\'' + configName + '\'';
+    }).join(', ');
+    let message = `"${name}" is not a valid config name. Try one
                    of the following: ${configsNamesAsString}.`;
     throw new Error(format(message));
   }
 
-  return require(CONFIG_DIR_PATH + &#x27;/&#x27; + name + &#x27;.json&#x27;);
+  return require(CONFIG_DIR_PATH + '/' + name + '.json');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2024,7 +2017,7 @@ var config;
   configPath = configPath || CSScomb.getCustomConfigPath();
 
   try {
-    config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+    config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
   } catch (e) {
     config = null;
   }
@@ -2035,7 +2028,7 @@ var config;
 
 var config;
 if (!fs.existsSync(configPath)) {
-  config = require(&#x27;../config/csscomb.json&#x27;);
+  config = require('../config/csscomb.json');
 } else if (configPath.match(/\.css$/)) {
   config = Comb.detectInFile(configPath);
 } else {
@@ -2062,16 +2055,16 @@ if (!config) {
     <li>description and source-code<pre class="apidocCodePre">function getCustomConfigPath(configPath) {
   var HOME = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 
-  configPath = configPath || path.join(process.cwd(), &#x27;.csscomb.json&#x27;);
+  configPath = configPath || path.join(process.cwd(), '.csscomb.json');
 
-  // If we&#x27;ve finally found a config, return its path:
+  // If we've finally found a config, return its path:
   if (fs.existsSync(configPath)) return fs.realpathSync(configPath);
 
   // If we are in HOME dir already and yet no config file, return a default
   // one from our package.
   // If project is located not under HOME, compare to root instead.
   // Since there appears to be no good way to get root path in
-  // Windows, assume that if current dir has no parent dir, we&#x27;re in
+  // Windows, assume that if current dir has no parent dir, we're in
   // root.
   var dirname = path.dirname(configPath);
   var parentDirname = path.dirname(dirname);
@@ -2079,7 +2072,7 @@ if (!config) {
 
   // If there is no config in this directory, go one level up and look for
   // a config there:
-  configPath = path.join(parentDirname, &#x27;.csscomb.json&#x27;);
+  configPath = path.join(parentDirname, '.csscomb.json');
   return CSScomb.getCustomConfigPath(configPath);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2090,12 +2083,12 @@ return JSON.stringify(config, false, 4);
 }
 
 function getConfig() {
-var configPath = options.config &#x26;&#x26; path.resolve(process.cwd(), options.config) || Comb.<span class="apidocCodeKeywordSpan
+var configPath = options.config &amp;&amp; path.resolve(process.cwd(), options.config) || Comb.<span class="apidocCodeKeywordSpan
 ">getCustomConfigPath</span>();
 
 var config;
 if (!fs.existsSync(configPath)) {
-  config = require(&#x27;../config/csscomb.json&#x27;);
+  config = require('../config/csscomb.json');
 } else if (configPath.match(/\.css$/)) {
   config = Comb.detectInFile(configPath);
 } else {
@@ -2113,7 +2106,7 @@ if (!fs.existsSync(configPath)) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">plugin = function (methods) {
   for (let method in methods) {
-    this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+    this[method] = typeof method === 'function' ? methods[method].bind(this) : methods[method];
   }
 
   this.validate();
@@ -2192,12 +2185,12 @@ if (!fs.existsSync(configPath)) {
     <li>description and source-code<pre class="apidocCodePre">detect(ast) {
   var detected = [];
 
-  ast.traverseByType(&#x27;block&#x27;, block =&#x3e; {
-    block.eachFor(node =&#x3e; {
-      if (node.is(&#x27;declarationDelimiter&#x27;)) {
+  ast.traverseByType('block', block =&gt; {
+    block.eachFor(node =&gt; {
+      if (node.is('declarationDelimiter')) {
         detected.push(true);
         return null;
-      } else if (node.is(&#x27;declaration&#x27;)) {
+      } else if (node.is('declaration')) {
         detected.push(false);
         return null;
       }
@@ -2221,30 +2214,30 @@ if (!fs.existsSync(configPath)) {
     <li>description and source-code<pre class="apidocCodePre">lint(ast) {
   var errors = [];
 
-  ast.traverseByType(&#x27;block&#x27;, block =&#x3e; {
-    block.eachFor(currentNode =&#x3e; {
+  ast.traverseByType('block', block =&gt; {
+    block.eachFor(currentNode =&gt; {
       var nodeWithoutSemicolon;
       // Skip nodes that already have `;` at the end:
-      if (currentNode.is(&#x27;declarationDelimiter&#x27;)) return null;
+      if (currentNode.is('declarationDelimiter')) return null;
 
       // Add semicolon only after declarations and includes.
       // If current node is include, insert semicolon right into it.
-      // If it&#x27;s declaration, look for value node:
-      if (currentNode.is(&#x27;include&#x27;) || currentNode.is(&#x27;extend&#x27;)) {
+      // If it's declaration, look for value node:
+      if (currentNode.is('include') || currentNode.is('extend')) {
         nodeWithoutSemicolon = currentNode;
-      } else if (currentNode.is(&#x27;declaration&#x27;)) {
-        nodeWithoutSemicolon = currentNode.last(&#x27;value&#x27;);
+      } else if (currentNode.is('declaration')) {
+        nodeWithoutSemicolon = currentNode.last('value');
       } else {
         return;
       }
 
       errors.push({
-        message: &#x27;Missing semicolon&#x27;,
+        message: 'Missing semicolon',
         line: nodeWithoutSemicolon.end.line,
         column: nodeWithoutSemicolon.end.column + 1
       });
 
-      // Stop looping through block&#x27;s children:
+      // Stop looping through block's children:
       return null;
     });
   });
@@ -2257,7 +2250,7 @@ let errors = [];
 let config = this.config;
 
 this.plugins.filter(function (plugin) {
-  return typeof plugin.value !== null &#x26;&#x26; typeof plugin.lint === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf
+  return typeof plugin.value !== null &amp;&amp; typeof plugin.lint === 'function' &amp;&amp; plugin.syntax.indexOf
 (ast.syntax) !== -1;
 }).forEach(function (plugin) {
   let e = plugin.<span class="apidocCodeKeywordSpan">lint</span>(ast, config);
@@ -2283,18 +2276,18 @@ if (filename) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   var nodeWithoutSemicolon;
 
-  ast.traverseByType(&#x27;block&#x27;, block =&#x3e; {
-    block.eachFor(currentNode =&#x3e; {
+  ast.traverseByType('block', block =&gt; {
+    block.eachFor(currentNode =&gt; {
       // Skip nodes that already have `;` at the end:
-      if (currentNode.is(&#x27;declarationDelimiter&#x27;)) return null;
+      if (currentNode.is('declarationDelimiter')) return null;
 
       // Add semicolon only after declarations and includes.
       // If current node is include, insert semicolon right into it.
-      // If it&#x27;s declaration, look for value node:
-      if (currentNode.is(&#x27;include&#x27;) || currentNode.is(&#x27;extend&#x27;)) {
+      // If it's declaration, look for value node:
+      if (currentNode.is('include') || currentNode.is('extend')) {
         nodeWithoutSemicolon = currentNode;
-      } else if (currentNode.is(&#x27;declaration&#x27;)) {
-        nodeWithoutSemicolon = currentNode.last(&#x27;value&#x27;);
+      } else if (currentNode.is('declaration')) {
+        nodeWithoutSemicolon = currentNode.last('value');
       } else {
         return;
       }
@@ -2303,19 +2296,19 @@ if (filename) {
       for (var j = nodeWithoutSemicolon.length; j--;) {
         var lastNode = nodeWithoutSemicolon.get(j);
 
-        // If the node&#x27;s last child is block, do not add semicolon:
+        // If the node's last child is block, do not add semicolon:
         // TODO: Add syntax check and run the code only for scss
-        if (lastNode.is(&#x27;block&#x27;)) {
+        if (lastNode.is('block')) {
           return null;
-        } else if (!lastNode.is(&#x27;space&#x27;) &#x26;&#x26; !lastNode.is(&#x27;multilineComment&#x27;) &#x26;&#x26; !lastNode.is(&#x27;singlelineComment&#x27;)) {
+        } else if (!lastNode.is('space') &amp;&amp; !lastNode.is('multilineComment') &amp;&amp; !lastNode.is('singlelineComment')) {
           j++;
           break;
         }
       }
 
       var declDelim = gonzales.createNode({
-        type: &#x27;declarationDelimiter&#x27;,
-        content: &#x27;;&#x27;
+        type: 'declarationDelimiter',
+        content: ';'
       });
       nodeWithoutSemicolon.insert(j, declDelim);
       return null;
@@ -2328,7 +2321,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2338,7 +2331,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2366,22 +2359,22 @@ _readFile(path) {
   var that = this;
 
   node.forEach(function (n) {
-    if (node.syntax === &#x27;sass&#x27; &#x26;&#x26; n.is(&#x27;block&#x27;)) {
+    if (node.syntax === 'sass' &amp;&amp; n.is('block')) {
       that._processSassBlock(n, level);
     }
 
     // Continue only with space nodes inside {...}:
-    if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(&#x27;space&#x27;)) {
+    if (node.syntax !== 'sass' &amp;&amp; level !== 0 &amp;&amp; n.is('space')) {
       that._processSpaceNode(n, level);
     }
 
-    if (n.is(&#x27;block&#x27;) || n.is(&#x27;atrulers&#x27;)) level++;
+    if (n.is('block') || n.is('atrulers')) level++;
 
     that._processNode(n, level);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    if (spaces === &#x27;&#x27;) {
+    if (spaces === '') {
       ast.remove(i);
     } else {
       whitespaceNode.content = spaces;
@@ -2411,10 +2404,10 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">_processSassBlock(node, level) {
   var value = this.value;
 
-  node.eachFor(&#x27;space&#x27;, function (whitespaceNode) {
-    if (whitespaceNode.content === &#x27;\n&#x27;) return;
+  node.eachFor('space', function (whitespaceNode) {
+    if (whitespaceNode.content === '\n') return;
 
-    var spaces = whitespaceNode.content.replace(/[ \t]/gm, &#x27;&#x27;);
+    var spaces = whitespaceNode.content.replace(/[ \t]/gm, '');
     spaces += new Array(level + 2).join(value);
     whitespaceNode.content = spaces;
   });
@@ -2426,12 +2419,12 @@ _readFile(path) {
     var that = this;
 
     node.forEach(function (n) {
-if (node.syntax === &#x27;sass&#x27; &#x26;&#x26; n.is(&#x27;block&#x27;)) {
+if (node.syntax === 'sass' &amp;&amp; n.is('block')) {
   that.<span class="apidocCodeKeywordSpan">_processSassBlock</span>(n, level);
 }
 
 // Continue only with space nodes inside {...}:
-if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(&#x27;space&#x27;)) {
+if (node.syntax !== 'sass' &amp;&amp; level !== 0 &amp;&amp; n.is('space')) {
   that._processSpaceNode(n, level);
 }
 ...</pre></li>
@@ -2450,7 +2443,7 @@ if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(
   var value = this.value;
 
   // Remove all whitespaces and tabs, leave only new lines:
-  var spaces = node.content.replace(/[ \t]/gm, &#x27;&#x27;);
+  var spaces = node.content.replace(/[ \t]/gm, '');
 
   if (!spaces) return;
 
@@ -2459,16 +2452,16 @@ if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   node.forEach(function (n) {
-    if (node.syntax === &#x27;sass&#x27; &#x26;&#x26; n.is(&#x27;block&#x27;)) {
+    if (node.syntax === 'sass' &amp;&amp; n.is('block')) {
       that._processSassBlock(n, level);
     }
 
     // Continue only with space nodes inside {...}:
-    if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(&#x27;space&#x27;)) {
+    if (node.syntax !== 'sass' &amp;&amp; level !== 0 &amp;&amp; n.is('space')) {
       that.<span class="apidocCodeKeywordSpan">_processSpaceNode</span>(n, level);
     }
 
-    if (n.is(&#x27;block&#x27;) || n.is(&#x27;atrulers&#x27;)) level++;
+    if (n.is('block') || n.is('atrulers')) level++;
 
     that._processNode(n, level);
   });
@@ -2490,18 +2483,18 @@ if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(
 
   ast.traverse(function (node) {
     // Continue only with non-empty {...} blocks:
-    if (!node.is(&#x27;atrulers&#x27;) &#x26;&#x26; !node.is(&#x27;block&#x27;) || !node.length) return;
+    if (!node.is('atrulers') &amp;&amp; !node.is('block') || !node.length) return;
 
-    node.eachFor(&#x27;space&#x27;, function (whitespaceNode) {
+    node.eachFor('space', function (whitespaceNode) {
       var spaces = whitespaceNode.content;
-      var lastIndex = spaces.lastIndexOf(&#x27;\n&#x27;);
+      var lastIndex = spaces.lastIndexOf('\n');
 
       // Do not continue if there is no line break:
-      if (lastIndex &#x3c; 0) return;
+      if (lastIndex &lt; 0) return;
 
       // Number of spaces from beginning of line:
       var spacesLength = spaces.slice(lastIndex + 1).length + 1;
-      detected.push(new Array(spacesLength).join(&#x27; &#x27;));
+      detected.push(new Array(spacesLength).join(' '));
     });
   });
 
@@ -2520,10 +2513,10 @@ if (node.syntax !== &#x27;sass&#x27; &#x26;&#x26; level !== 0 &#x26;&#x26; n.is(
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
-  ast.eachFor(&#x27;space&#x27;, function (whitespaceNode, i) {
-    var spaces = whitespaceNode.content.replace(/\n[ \t]+/gm, &#x27;\n&#x27;);
+  ast.eachFor('space', function (whitespaceNode, i) {
+    var spaces = whitespaceNode.content.replace(/\n[ \t]+/gm, '\n');
 
-    if (spaces === &#x27;&#x27;) {
+    if (spaces === '') {
       ast.remove(i);
     } else {
       whitespaceNode.content = spaces;
@@ -2538,7 +2531,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2548,7 +2541,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2577,11 +2570,11 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect(ast) {
   var detected = [];
 
-  ast.traverseByType(&#x27;color&#x27;, function (color) {
+  ast.traverseByType('color', function (color) {
     if (color.content.match(/^[^A-F]*[a-f][^A-F]*$/)) {
-      detected.push(&#x27;lower&#x27;);
+      detected.push('lower');
     } else if (color.content.match(/^[^a-f]*[A-F][^a-f]*$/)) {
-      detected.push(&#x27;upper&#x27;);
+      detected.push('upper');
     }
   });
 
@@ -2602,8 +2595,8 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   var value = this.value;
 
-  ast.traverseByType(&#x27;color&#x27;, function (color) {
-    color.content = value === &#x27;lower&#x27; ? color.content.toLowerCase() : color.content.toUpperCase();
+  ast.traverseByType('color', function (color) {
+    color.content = value === 'lower' ? color.content.toLowerCase() : color.content.toUpperCase();
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2612,7 +2605,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2622,7 +2615,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2649,7 +2642,7 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect(ast) {
   var detected = [];
 
-  ast.traverseByType(&#x27;color&#x27;, function (color) {
+  ast.traverseByType('color', function (color) {
     if (color.content.match(/^\w{3}$/)) {
       detected.push(true);
     } else if (color.content.match(/^(\w)\1(\w)\2(\w)\3$/)) {
@@ -2674,9 +2667,9 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   var value = this.value;
 
-  ast.traverseByType(&#x27;color&#x27;, function (color) {
-    color.content = value ? color.content.replace(/(\w)\1(\w)\2(\w)\3/i, &#x27;$1$2$3&#x27;) : color.content.replace(/^(\w)(\w)(\w)$/, &#x27;$1
-$1$2$2$3$3&#x27;);
+  ast.traverseByType('color', function (color) {
+    color.content = value ? color.content.replace(/(\w)\1(\w)\2(\w)\3/i, '$1$2$3') : color.content.replace(/^(\w)(\w)(\w)$/, '$1
+$1$2$2$3$3');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2685,7 +2678,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2695,7 +2688,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2722,15 +2715,15 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect(ast) {
   let detected = [];
 
-  ast.traverse(node =&#x3e; {
-    if (!node.is(&#x27;selector&#x27;) &#x26;&#x26; !node.is(&#x27;arguments&#x27;)) return;
+  ast.traverse(node =&gt; {
+    if (!node.is('selector') &amp;&amp; !node.is('arguments')) return;
 
-    node.forEach(&#x27;typeSelector&#x27;, selector =&#x3e; {
-      selector.forEach(&#x27;ident&#x27;, ident =&#x3e; {
+    node.forEach('typeSelector', selector =&gt; {
+      selector.forEach('ident', ident =&gt; {
         if (ident.content.match(/^[a-z]+$/)) {
-          detected.push(&#x27;lower&#x27;);
+          detected.push('lower');
         } else if (ident.content.match(/^[A-Z]+$/)) {
-          detected.push(&#x27;upper&#x27;);
+          detected.push('upper');
         }
       });
     });
@@ -2753,12 +2746,12 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   let value = this.value;
 
-  ast.traverse(node =&#x3e; {
-    if (!node.is(&#x27;selector&#x27;) &#x26;&#x26; !node.is(&#x27;arguments&#x27;)) return;
+  ast.traverse(node =&gt; {
+    if (!node.is('selector') &amp;&amp; !node.is('arguments')) return;
 
-    node.forEach(&#x27;typeSelector&#x27;, selector =&#x3e; {
-      selector.forEach(&#x27;ident&#x27;, ident =&#x3e; {
-        ident.content = value === &#x27;lower&#x27; ? ident.content.toLowerCase() : ident.content.toUpperCase();
+    node.forEach('typeSelector', selector =&gt; {
+      selector.forEach('ident', ident =&gt; {
+        ident.content = value === 'lower' ? ident.content.toLowerCase() : ident.content.toUpperCase();
       });
     });
   });
@@ -2769,7 +2762,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2779,7 +2772,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2806,7 +2799,7 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect(ast) {
   var lastChild = ast.last();
 
-  if (lastChild.is(&#x27;space&#x27;) &#x26;&#x26; lastChild.content.indexOf(&#x27;\n&#x27;) !== -1) {
+  if (lastChild.is('space') &amp;&amp; lastChild.content.indexOf('\n') !== -1) {
     return [true];
   } else {
     return [false];
@@ -2827,13 +2820,13 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   var lastChild = ast.last();
 
-  if (!lastChild.is(&#x27;space&#x27;)) {
-    lastChild = gonzales.createNode({ type: &#x27;space&#x27;, content: &#x27;&#x27; });
+  if (!lastChild.is('space')) {
+    lastChild = gonzales.createNode({ type: 'space', content: '' });
     ast.content.push(lastChild);
   }
 
-  lastChild.content = lastChild.content.replace(/\n$/, &#x27;&#x27;);
-  if (this.value) lastChild.content += &#x27;\n&#x27;;
+  lastChild.content = lastChild.content.replace(/\n$/, '');
+  if (this.value) lastChild.content += '\n';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  */
@@ -2841,7 +2834,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -2851,7 +2844,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -2907,17 +2900,17 @@ if (options.lint) config.lint = options.lint;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">implementSetValue(valueType) {
-  if (typeof valueType === &#x27;undefined&#x27;) throw new Error();
+  if (typeof valueType === 'undefined') throw new Error();
 
   return format(`If you see this message and you are not
       a developer adding a new option, please open an issue here:
       https://github.com/csscomb/core/issues/new\n
-      For option to accept values of type &#x22;${valueType}&#x22;
+      For option to accept values of type "${valueType}"
       you need to implement custom \`setValue()\` method.`);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-if (valueType = &#x27;string&#x27;) {
+if (valueType = 'string') {
   if (!value.match(pattern)) throw new Error(Errors.unacceptableString(pattern));
   this.value_ = value;
   return this.value_;
@@ -2927,7 +2920,7 @@ throw new Error(Errors.<span class="apidocCodeKeywordSpan">implementSetValue</sp
   },
 
   validate() {
-if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+if (typeof this.name !== 'string' || !this.name) throw new Error(Errors.missingName());
 
 if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
 ...</pre></li>
@@ -2943,7 +2936,7 @@ if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Err
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">missingName() {
-  return &#x27;Plugin must have a valid \`name\` property.&#x27;;
+  return 'Plugin must have a valid \`name\` property.';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       return this.value_;
@@ -2953,12 +2946,12 @@ if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Err
   },
 
   validate() {
-    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.<span class="apidocCodeKeywordSpan">missingName
+    if (typeof this.name !== 'string' || !this.name) throw new Error(Errors.<span class="apidocCodeKeywordSpan">missingName
 </span>());
 
     if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
 
-    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+    if (typeof this.accepts !== 'object' &amp;&amp; typeof this.setValue !== 'function') throw new Error(Errors
 .missingSetValue());
   }
 };
@@ -2982,11 +2975,11 @@ if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Err
   },
 
   validate() {
-    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+    if (typeof this.name !== 'string' || !this.name) throw new Error(Errors.missingName());
 
     if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
 
-    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+    if (typeof this.accepts !== 'object' &amp;&amp; typeof this.setValue !== 'function') throw new Error(Errors
 .<span class="apidocCodeKeywordSpan">missingSetValue</span>());
   }
 };
@@ -3005,7 +2998,7 @@ module.exports = Plugin;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">missingSyntax() {
-  return &#x27;Plugin must list supported syntaxes.&#x27;;
+  return 'Plugin must list supported syntaxes.';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -3013,12 +3006,12 @@ module.exports = Plugin;
   },
 
   validate() {
-    if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+    if (typeof this.name !== 'string' || !this.name) throw new Error(Errors.missingName());
 
     if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.<span class="apidocCodeKeywordSpan">missingSyntax
 </span>());
 
-    if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors
+    if (typeof this.accepts !== 'object' &amp;&amp; typeof this.setValue !== 'function') throw new Error(Errors
 .missingSetValue());
   }
 };
@@ -3055,7 +3048,7 @@ if (!fs.existsSync(config.template)) {
 
 var templateConfig = Comb.detectInFile(config.template);
 for (var attrname in templateConfig) {
-  if (templateConfig.hasOwnProperty(attrname) &#x26;&#x26; !config[attrname]) {
+  if (templateConfig.hasOwnProperty(attrname) &amp;&amp; !config[attrname]) {
 ...</pre></li>
     </ul>
 
@@ -3069,9 +3062,9 @@ for (var attrname in templateConfig) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">twoPluginsWithSameName(pluginName) {
-  if (typeof pluginName === &#x27;undefined&#x27;) throw new Error();
+  if (typeof pluginName === 'undefined') throw new Error();
 
-  return format(`You&#x27;re trying to use one plugin twice:
+  return format(`You're trying to use one plugin twice:
       ${pluginName}. Please make sure there are not two different
       plugins with the same name.`);
 }</pre></li>
@@ -3104,9 +3097,9 @@ plugin.syntax.forEach(function (s) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unacceptableBoolean(pattern) {
-  if (typeof pattern === &#x27;undefined&#x27;) throw new Error();
+  if (typeof pattern === 'undefined') throw new Error();
 
-  return `Value must be one of the following: ${pattern.join(&#x27;, &#x27;)}.`;
+  return `Value must be one of the following: ${pattern.join(', ')}.`;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   this.value_ = this.setValue(value);
@@ -3115,16 +3108,16 @@ plugin.syntax.forEach(function (s) {
 
 if (!pattern) throw new Error(Errors.unacceptableValueType(valueType, this.accepts));
 
-if (valueType === &#x27;boolean&#x27;) {
-  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableBoolean</span>(pattern
+if (valueType === 'boolean') {
+  if (pattern.indexOf(value) &lt; 0) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableBoolean</span>(pattern
 ));
   this.value_ = value;
   return this.value_;
 }
 
-if (valueType === &#x27;number&#x27;) {
+if (valueType === 'number') {
   if (value !== parseInt(value)) throw new Error(Errors.unacceptableNumber());
-  this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+  this.value_ = new Array(value + 1).join(' ');
 ...</pre></li>
     </ul>
 
@@ -3138,22 +3131,22 @@ if (valueType === &#x27;number&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unacceptableNumber() {
-  return &#x27;Value must be an integer.&#x27;;
+  return 'Value must be an integer.';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-if (valueType === &#x27;boolean&#x27;) {
-  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+if (valueType === 'boolean') {
+  if (pattern.indexOf(value) &lt; 0) throw new Error(Errors.unacceptableBoolean(pattern));
   this.value_ = value;
   return this.value_;
 }
 
-if (valueType === &#x27;number&#x27;) {
+if (valueType === 'number') {
   if (value !== parseInt(value)) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableNumber</span>());
-  this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+  this.value_ = new Array(value + 1).join(' ');
   return this.value_;
 }
 
-if (valueType = &#x27;string&#x27;) {
+if (valueType = 'string') {
   if (!value.match(pattern)) throw new Error(Errors.unacceptableString(pattern));
   this.value_ = value;
 ...</pre></li>
@@ -3169,18 +3162,18 @@ if (valueType = &#x27;string&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unacceptableString(pattern) {
-  if (typeof pattern === &#x27;undefined&#x27;) throw new Error();
+  if (typeof pattern === 'undefined') throw new Error();
 
   return `Value must match pattern ${pattern}.`;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  if (valueType === &#x27;number&#x27;) {
+  if (valueType === 'number') {
     if (value !== parseInt(value)) throw new Error(Errors.unacceptableNumber());
-    this.value_ = new Array(value + 1).join(&#x27; &#x27;);
+    this.value_ = new Array(value + 1).join(' ');
     return this.value_;
   }
 
-  if (valueType = &#x27;string&#x27;) {
+  if (valueType = 'string') {
     if (!value.match(pattern)) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableString</span>(pattern));
     this.value_ = value;
     return this.value_;
@@ -3201,14 +3194,14 @@ if (valueType = &#x27;string&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unacceptableValueType(valueType, accepts) {
-  if (typeof valueType === &#x27;undefined&#x27; || typeof accepts === &#x27;undefined&#x27;) throw new Error();
+  if (typeof valueType === 'undefined' || typeof accepts === 'undefined') throw new Error();
 
   return format(`The option does not accept values of type
-      ${valueType}.\nValue\&#x27;s type must be one the following:
-      ${Object.keys(accepts).join(&#x27;, &#x27;)}.`);
+      ${valueType}.\nValue\'s type must be one the following:
+      ${Object.keys(accepts).join(', ')}.`);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-let pattern = this.accepts &#x26;&#x26; this.accepts[valueType];
+let pattern = this.accepts &amp;&amp; this.accepts[valueType];
 
 if (this.setValue) {
   this.value_ = this.setValue(value);
@@ -3217,8 +3210,8 @@ if (this.setValue) {
 
 if (!pattern) throw new Error(Errors.<span class="apidocCodeKeywordSpan">unacceptableValueType</span>(valueType, this.accepts));
 
-if (valueType === &#x27;boolean&#x27;) {
-  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+if (valueType === 'boolean') {
+  if (pattern.indexOf(value) &lt; 0) throw new Error(Errors.unacceptableBoolean(pattern));
   this.value_ = value;
   return this.value_;
 }
@@ -3242,7 +3235,7 @@ if (valueType === &#x27;boolean&#x27;) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;number&#x27;, function (number) {
+  ast.traverseByType('number', function (number) {
     if (number.content.match(/^\.[0-9]+/)) {
       detected.push(false);
     } else if (number.content.match(/^0\.[0-9]+/)) {
@@ -3267,11 +3260,11 @@ if (valueType === &#x27;boolean&#x27;) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;number&#x27;, function (number) {
+  ast.traverseByType('number', function (number) {
     if (!value) {
-      number.content = number.content.replace(/^0+(?=\.)/, &#x27;&#x27;);
-    } else if (number.content[0] === &#x27;.&#x27;) {
-      number.content = &#x27;0&#x27; + number.content;
+      number.content = number.content.replace(/^0+(?=\.)/, '');
+    } else if (number.content[0] === '.') {
+      number.content = '0' + number.content;
     }
   });
 }</pre></li>
@@ -3281,7 +3274,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -3291,7 +3284,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -3316,18 +3309,18 @@ _readFile(path) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">buildSpacing(syntax) {
-  let spacing = &#x27;&#x27;;
+  let spacing = '';
   let numNewLines = 0;
   let newLinesOffset = 1;
 
-  if (syntax === &#x27;sass&#x27;) {
+  if (syntax === 'sass') {
     newLinesOffset = 0;
   }
 
   numNewLines = Math.round(this.value) + newLinesOffset;
 
-  for (var i = 0; i &#x3c; numNewLines; i++) {
-    spacing += &#x27;\n&#x27;;
+  for (var i = 0; i &lt; numNewLines; i++) {
+    spacing += '\n';
   }
 
   return spacing;
@@ -3342,7 +3335,7 @@ _readFile(path) {
 process(ast) {
   this.newLinesString = this.<span class="apidocCodeKeywordSpan">buildSpacing</span>(ast.syntax);
   this.newLinesNode = gonzales.createNode({
-    type: &#x27;space&#x27;,
+    type: 'space',
     content: this.newLinesString
   });
   this.processBlock(ast);
@@ -3365,11 +3358,11 @@ process(ast) {
   let currentIndex = index;
   let jumpSize = 2;
 
-  if (parent.syntax === &#x27;sass&#x27;) {
+  if (parent.syntax === 'sass') {
     jumpSize = 3;
   }
 
-  while (currentIndex &#x3e;= 0) {
+  while (currentIndex &gt;= 0) {
     if (this.prevLineIsComment(parent, currentIndex)) {
       currentIndex -= jumpSize;
       continue;
@@ -3393,13 +3386,13 @@ process(ast) {
 }
     }
 
-    if (prevChild &#x26;&#x26; shouldInsert) {
+    if (prevChild &amp;&amp; shouldInsert) {
 if (this.prevLineIsComment(node, index) || this.isComment(prevChild)) {
   let lastNonCommentIndex = this.<span class="apidocCodeKeywordSpan">findLatestNonCommentNode</span>(node, index);
   prevChild = node.get(lastNonCommentIndex);
 }
 
-if (prevChild.is(&#x27;space&#x27;)) {
+if (prevChild.is('space')) {
   this.insertNewlinesAsString(prevChild);
 } else {
   this.insertNewlinesAsNode(prevChild);
@@ -3421,20 +3414,20 @@ if (prevChild.is(&#x27;space&#x27;)) {
 
   // Check for previous nodes that are not a space
   // Do not insert if the ruleset is the first item
-  for (var i = 0; i &#x3c; index; i++) {
-    if (!node.get(i).is(&#x27;space&#x27;)) {
+  for (var i = 0; i &lt; index; i++) {
+    if (!node.get(i).is('space')) {
       shouldInsert = true;
       break;
     }
   }
 
-  if (prevChild &#x26;&#x26; shouldInsert) {
+  if (prevChild &amp;&amp; shouldInsert) {
     if (this.prevLineIsComment(node, index) || this.isComment(prevChild)) {
       let lastNonCommentIndex = this.findLatestNonCommentNode(node, index);
       prevChild = node.get(lastNonCommentIndex);
     }
 
-    if (prevChild.is(&#x27;space&#x27;)) {
+    if (prevChild.is('space')) {
       this.insertNewlinesAsString(prevChild);
     } else {
       this.insertNewlinesAsNode(prevChild);
@@ -3448,13 +3441,13 @@ if (prevChild.is(&#x27;space&#x27;)) {
 },
 
 processAtRules(node) {
-  node.forEach(&#x27;atrule&#x27;, (atRuleNode, index) =&#x3e; {
+  node.forEach('atrule', (atRuleNode, index) =&gt; {
     this.<span class="apidocCodeKeywordSpan">insertNewlines</span>(node, index);
   });
 },
 
 processRuleSets(node) {
-  node.forEach(&#x27;ruleset&#x27;, (ruleSetNode, index) =&#x3e; {
+  node.forEach('ruleset', (ruleSetNode, index) =&gt; {
     this.insertNewlines(node, index);
   });
 ...</pre></li>
@@ -3477,7 +3470,7 @@ processRuleSets(node) {
         prevChild = node.get(lastNonCommentIndex);
       }
 
-      if (prevChild.is(&#x27;space&#x27;)) {
+      if (prevChild.is('space')) {
         this.insertNewlinesAsString(prevChild);
       } else {
         this.<span class="apidocCodeKeywordSpan">insertNewlinesAsNode</span>(prevChild);
@@ -3501,10 +3494,10 @@ module.exports = option;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insertNewlinesAsString(node) {
   let content = node.content;
-  let lastNewline = content.lastIndexOf(&#x27;\n&#x27;);
+  let lastNewline = content.lastIndexOf('\n');
   let newContent;
 
-  if (lastNewline &#x3e; -1) {
+  if (lastNewline &gt; -1) {
     content = content.substring(lastNewline + 1);
   }
 
@@ -3512,13 +3505,13 @@ module.exports = option;
   node.content = newContent;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    if (prevChild &#x26;&#x26; shouldInsert) {
+    if (prevChild &amp;&amp; shouldInsert) {
       if (this.prevLineIsComment(node, index) || this.isComment(prevChild)) {
         let lastNonCommentIndex = this.findLatestNonCommentNode(node, index);
         prevChild = node.get(lastNonCommentIndex);
       }
 
-      if (prevChild.is(&#x27;space&#x27;)) {
+      if (prevChild.is('space')) {
         this.<span class="apidocCodeKeywordSpan">insertNewlinesAsString</span>(prevChild);
       } else {
         this.insertNewlinesAsNode(prevChild);
@@ -3542,7 +3535,7 @@ module.exports = option;
   if (!node) {
     return false;
   }
-  return node.is(&#x27;singlelineComment&#x27;) || node.is(&#x27;multilineComment&#x27;);
+  return node.is('singlelineComment') || node.is('multilineComment');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   }
@@ -3550,17 +3543,17 @@ module.exports = option;
   prevChild = parent.get(index - 1);
   prevMinusOneChild = parent.get(index - 2);
 
-  if (parentSyntax === &#x27;sass&#x27;) {
+  if (parentSyntax === 'sass') {
     prevMinusTwoChild = parent.get(index - 3);
-    return this.<span class="apidocCodeKeywordSpan">isComment</span>(prevMinusTwoChild) &#x26;&#x26; this.isNewline(prevMinusOneChild
-) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+    return this.<span class="apidocCodeKeywordSpan">isComment</span>(prevMinusTwoChild) &amp;&amp; this.isNewline(prevMinusOneChild
+) &amp;&amp; prevChild.is('space');
   }
 
-  return this.isComment(prevMinusOneChild) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+  return this.isComment(prevMinusOneChild) &amp;&amp; prevChild.is('space');
 },
 
 /*
-** Find the latest previous child that isn&#x27;t a comment, and return its index.
+** Find the latest previous child that isn't a comment, and return its index.
 ...</pre></li>
     </ul>
 
@@ -3577,7 +3570,7 @@ module.exports = option;
   if (!node) {
     return false;
   }
-  return node.content === &#x27;\n&#x27;;
+  return node.content === '\n';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   }
@@ -3585,17 +3578,17 @@ module.exports = option;
   prevChild = parent.get(index - 1);
   prevMinusOneChild = parent.get(index - 2);
 
-  if (parentSyntax === &#x27;sass&#x27;) {
+  if (parentSyntax === 'sass') {
     prevMinusTwoChild = parent.get(index - 3);
-    return this.isComment(prevMinusTwoChild) &#x26;&#x26; this.<span class="apidocCodeKeywordSpan">isNewline</span>(prevMinusOneChild
-) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+    return this.isComment(prevMinusTwoChild) &amp;&amp; this.<span class="apidocCodeKeywordSpan">isNewline</span>(prevMinusOneChild
+) &amp;&amp; prevChild.is('space');
   }
 
-  return this.isComment(prevMinusOneChild) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+  return this.isComment(prevMinusOneChild) &amp;&amp; prevChild.is('space');
 },
 
 /*
-** Find the latest previous child that isn&#x27;t a comment, and return its index.
+** Find the latest previous child that isn't a comment, and return its index.
 ...</pre></li>
     </ul>
 
@@ -3616,32 +3609,32 @@ module.exports = option;
   let parentSyntax = parent ? parent.syntax : null;
 
   // Sass is troublesome because newlines are counted as separate nodes
-  if (parentSyntax === &#x27;sass&#x27;) {
+  if (parentSyntax === 'sass') {
     indexThreshold = 3;
   }
 
-  if (!parent || index &#x3c; indexThreshold) {
+  if (!parent || index &lt; indexThreshold) {
     return false;
   }
 
   prevChild = parent.get(index - 1);
   prevMinusOneChild = parent.get(index - 2);
 
-  if (parentSyntax === &#x27;sass&#x27;) {
+  if (parentSyntax === 'sass') {
     prevMinusTwoChild = parent.get(index - 3);
-    return this.isComment(prevMinusTwoChild) &#x26;&#x26; this.isNewline(prevMinusOneChild) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+    return this.isComment(prevMinusTwoChild) &amp;&amp; this.isNewline(prevMinusOneChild) &amp;&amp; prevChild.is('space');
   }
 
-  return this.isComment(prevMinusOneChild) &#x26;&#x26; prevChild.is(&#x27;space&#x27;);
+  return this.isComment(prevMinusOneChild) &amp;&amp; prevChild.is('space');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     let jumpSize = 2;
 
-    if (parent.syntax === &#x27;sass&#x27;) {
+    if (parent.syntax === 'sass') {
 jumpSize = 3;
     }
 
-    while (currentIndex &#x3e;= 0) {
+    while (currentIndex &gt;= 0) {
 if (this.<span class="apidocCodeKeywordSpan">prevLineIsComment</span>(parent, currentIndex)) {
   currentIndex -= jumpSize;
   continue;
@@ -3665,7 +3658,7 @@ if (!this.isComment(prevChild)) {
     <li>description and source-code<pre class="apidocCodePre">process(ast) {
   this.newLinesString = this.buildSpacing(ast.syntax);
   this.newLinesNode = gonzales.createNode({
-    type: &#x27;space&#x27;,
+    type: 'space',
     content: this.newLinesString
   });
   this.processBlock(ast);
@@ -3676,7 +3669,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -3686,7 +3679,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -3700,7 +3693,7 @@ _readFile(path) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">processAtRules(node) {
-  node.forEach(&#x27;atrule&#x27;, (atRuleNode, index) =&#x3e; {
+  node.forEach('atrule', (atRuleNode, index) =&gt; {
     this.insertNewlines(node, index);
   });
 }</pre></li>
@@ -3710,7 +3703,7 @@ this.processBlock(ast);
   },
 
   processBlock(x) {
-if (x.is(&#x27;stylesheet&#x27;)) {
+if (x.is('stylesheet')) {
   // Check all @rules
   this.<span class="apidocCodeKeywordSpan">processAtRules</span>(x);
 
@@ -3718,8 +3711,8 @@ if (x.is(&#x27;stylesheet&#x27;)) {
   this.processRuleSets(x);
 }
 
-x.forEach(node =&#x3e; {
-  if (!node.is(&#x27;block&#x27;)) {
+x.forEach(node =&gt; {
+  if (!node.is('block')) {
 ...</pre></li>
     </ul>
 
@@ -3733,7 +3726,7 @@ x.forEach(node =&#x3e; {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">processBlock(x) {
-  if (x.is(&#x27;stylesheet&#x27;)) {
+  if (x.is('stylesheet')) {
     // Check all @rules
     this.processAtRules(x);
 
@@ -3741,8 +3734,8 @@ x.forEach(node =&#x3e; {
     this.processRuleSets(x);
   }
 
-  x.forEach(node =&#x3e; {
-    if (!node.is(&#x27;block&#x27;)) {
+  x.forEach(node =&gt; {
+    if (!node.is('block')) {
       return this.processBlock(node);
     }
 
@@ -3760,14 +3753,14 @@ x.forEach(node =&#x3e; {
 process(ast) {
   this.newLinesString = this.buildSpacing(ast.syntax);
   this.newLinesNode = gonzales.createNode({
-    type: &#x27;space&#x27;,
+    type: 'space',
     content: this.newLinesString
   });
   this.<span class="apidocCodeKeywordSpan">processBlock</span>(ast);
 },
 
 processBlock(x) {
-  if (x.is(&#x27;stylesheet&#x27;)) {
+  if (x.is('stylesheet')) {
     // Check all @rules
     this.processAtRules(x);
 ...</pre></li>
@@ -3783,14 +3776,14 @@ processBlock(x) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">processRuleSets(node) {
-  node.forEach(&#x27;ruleset&#x27;, (ruleSetNode, index) =&#x3e; {
+  node.forEach('ruleset', (ruleSetNode, index) =&gt; {
     this.insertNewlines(node, index);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
   processBlock(x) {
-if (x.is(&#x27;stylesheet&#x27;)) {
+if (x.is('stylesheet')) {
   // Check all @rules
   this.processAtRules(x);
 
@@ -3798,8 +3791,8 @@ if (x.is(&#x27;stylesheet&#x27;)) {
   this.<span class="apidocCodeKeywordSpan">processRuleSets</span>(x);
 }
 
-x.forEach(node =&#x3e; {
-  if (!node.is(&#x27;block&#x27;)) {
+x.forEach(node =&gt; {
+  if (!node.is('block')) {
     return this.processBlock(node);
   }
 ...</pre></li>
@@ -3817,8 +3810,8 @@ x.forEach(node =&#x3e; {
     <li>description and source-code<pre class="apidocCodePre">setValue(value) {
   let valueType = typeof value;
 
-  if (valueType !== &#x27;number&#x27;) {
-    throw new Error(&#x27;Value must be a number.&#x27;);
+  if (valueType !== 'number') {
+    throw new Error('Value must be a number.');
   }
 
   return value;
@@ -3828,7 +3821,7 @@ return this.value_;
   },
   set value(value) {
 let valueType = typeof value;
-let pattern = this.accepts &#x26;&#x26; this.accepts[valueType];
+let pattern = this.accepts &amp;&amp; this.accepts[valueType];
 
 if (this.setValue) {
   this.value_ = this.<span class="apidocCodeKeywordSpan">setValue</span>(value);
@@ -3837,8 +3830,8 @@ if (this.setValue) {
 
 if (!pattern) throw new Error(Errors.unacceptableValueType(valueType, this.accepts));
 
-if (valueType === &#x27;boolean&#x27;) {
-  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+if (valueType === 'boolean') {
+  if (pattern.indexOf(value) &lt; 0) throw new Error(Errors.unacceptableBoolean(pattern));
 ...</pre></li>
     </ul>
 
@@ -3870,7 +3863,7 @@ if (valueType === &#x27;boolean&#x27;) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">plugin = function (methods) {
   for (let method in methods) {
-    this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+    this[method] = typeof method === 'function' ? methods[method].bind(this) : methods[method];
   }
 
   this.validate();
@@ -3893,18 +3886,18 @@ if (valueType === &#x27;boolean&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">validate() {
-  if (typeof this.name !== &#x27;string&#x27; || !this.name) throw new Error(Errors.missingName());
+  if (typeof this.name !== 'string' || !this.name) throw new Error(Errors.missingName());
 
   if (!Array.isArray(this.syntax) || this.syntax.length === 0) throw new Error(Errors.missingSyntax());
 
-  if (typeof this.accepts !== &#x27;object&#x27; &#x26;&#x26; typeof this.setValue !== &#x27;function&#x27;) throw new Error(Errors.missingSetValue());
+  if (typeof this.accepts !== 'object' &amp;&amp; typeof this.setValue !== 'function') throw new Error(Errors.missingSetValue());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-let Errors = require(&#x27;./errors&#x27;);
+let Errors = require('./errors');
 
 let Plugin = function (methods) {
 for (let method in methods) {
-  this[method] = typeof method === &#x27;function&#x27; ? methods[method].bind(this) : methods[method];
+  this[method] = typeof method === 'function' ? methods[method].bind(this) : methods[method];
 }
 
 this.<span class="apidocCodeKeywordSpan">validate</span>();
@@ -3912,7 +3905,7 @@ this.<span class="apidocCodeKeywordSpan">validate</span>();
 
 Plugin.prototype = {
 /**
- * Plugin&#x27;s name.
+ * Plugin's name.
  * @type {String}
  */
 ...</pre></li>
@@ -3949,11 +3942,11 @@ Plugin.prototype = {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;string&#x27;, function (string) {
-    if (string.content[0] === &#x27;&#x22;&#x27;) {
-      detected.push(&#x27;double&#x27;);
-    } else if (string.content[0] === &#x27;\&#x27;&#x27;) {
-      detected.push(&#x27;single&#x27;);
+  ast.traverseByType('string', function (string) {
+    if (string.content[0] === '"') {
+      detected.push('double');
+    } else if (string.content[0] === '\'') {
+      detected.push('single');
     }
   });
 
@@ -3974,23 +3967,23 @@ Plugin.prototype = {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;string&#x27;, function (string) {
-    if (string.content[0] === &#x27;&#x22;&#x27; &#x26;&#x26; value === &#x27;single&#x27;) {
+  ast.traverseByType('string', function (string) {
+    if (string.content[0] === '"' &amp;&amp; value === 'single') {
       string.content = string.content
       // Unescape all escaped double quotes
-      .replace(/\\&#x22;/g, &#x27;&#x22;&#x27;)
+      .replace(/\\"/g, '"')
       // Escape all the single quotes
-      .replace(/([^\\])&#x27;/g, &#x27;$1\\\&#x27;&#x27;)
+      .replace(/([^\\])'/g, '$1\\\'')
       // Replace the first and the last quote
-      .replace(/^&#x22;|&#x22;$/g, &#x27;\&#x27;&#x27;);
-    } else if (string.content[0] === &#x27;\&#x27;&#x27; &#x26;&#x26; value === &#x27;double&#x27;) {
+      .replace(/^"|"$/g, '\'');
+    } else if (string.content[0] === '\'' &amp;&amp; value === 'double') {
       string.content = string.content
       // Unescape all escaped single quotes
-      .replace(/\\&#x27;/g, &#x27;\&#x27;&#x27;)
+      .replace(/\\'/g, '\'')
       // Escape all the double quotes
-      .replace(/([^\\])&#x22;/g, &#x27;$1\\\&#x22;&#x27;)
+      .replace(/([^\\])"/g, '$1\\\"')
       // Replace the first and the last quote
-      .replace(/^&#x27;|&#x27;$/g, &#x27;&#x22;&#x27;);
+      .replace(/^'|'$/g, '"');
     }
   });
 }</pre></li>
@@ -4000,7 +3993,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -4010,7 +4003,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -4040,9 +4033,9 @@ _readFile(path) {
   let detected = [];
 
   ast.traverse(function (node) {
-    if (!node.is(&#x27;atrulers&#x27;) &#x26;&#x26; !node.is(&#x27;block&#x27;)) return;
+    if (!node.is('atrulers') &amp;&amp; !node.is('block')) return;
 
-    if (node.length === 0 || node.length === 1 &#x26;&#x26; node.first().is(&#x27;space&#x27;)) {
+    if (node.length === 0 || node.length === 1 &amp;&amp; node.first().is('space')) {
       detected.push(false);
     }
   });
@@ -4070,7 +4063,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -4080,7 +4073,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -4109,8 +4102,8 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">_cleanSassLinebreaks(node) {
   let containsOnlyLinebreaks = true;
 
-  node.forEach(space =&#x3e; {
-    if (!space.is(&#x27;space&#x27;) || space.content !== &#x27;\n&#x27;) {
+  node.forEach(space =&gt; {
+    if (!space.is('space') || space.content !== '\n') {
       containsOnlyLinebreaks = false;
       return null;
     }
@@ -4126,9 +4119,9 @@ return sendPositions ? positions : null;
   },
 
   _insertSortablesToBlock(nodesToSort, node) {
-if (node.syntax === &#x27;sass&#x27;) this.<span class="apidocCodeKeywordSpan">_cleanSassLinebreaks</span>(node);
+if (node.syntax === 'sass') this.<span class="apidocCodeKeywordSpan">_cleanSassLinebreaks</span>(node);
 
-for (let i = nodesToSort.length - 1, l = -1; i &#x3e; l; i--) {
+for (let i = nodesToSort.length - 1, l = -1; i &gt; l; i--) {
   let currentNode = nodesToSort[i];
   let prevNode = nodesToSort[i - 1];
   let spacesBeforeNode = currentNode.spacesBeforeNode || [];
@@ -4154,13 +4147,13 @@ for (let i = nodesToSort.length - 1, l = -1; i &#x3e; l; i--) {
   let propertyName = this._getSortableName(node);
   if (!propertyName) return null;
 
-  // Check if current node&#x27;s property name is in sort order.
+  // Check if current node's property name is in sort order.
   let propertyIndex = this.value[propertyName];
-  // If the declaration&#x27;s property is in order&#x27;s list, save its
+  // If the declaration's property is in order's list, save its
   // group and property indices. Otherwise set them to 10000, so
   // declaration appears at the bottom of a sorted list:
-  extendedNode.groupIndex = propertyIndex &#x26;&#x26; propertyIndex.group &#x3e; -1 ? propertyIndex.group : this._getLastGroupIndex();
-  extendedNode.propertyIndex = propertyIndex &#x26;&#x26; propertyIndex.prop &#x3e; -1 ? propertyIndex.prop : this._getLastPropertyIndex();
+  extendedNode.groupIndex = propertyIndex &amp;&amp; propertyIndex.group &gt; -1 ? propertyIndex.group : this._getLastGroupIndex();
+  extendedNode.propertyIndex = propertyIndex &amp;&amp; propertyIndex.prop &gt; -1 ? propertyIndex.prop : this._getLastPropertyIndex();
 
   // Spaces before node.
   nodesToDelete = nodesToDelete.concat(spacesBefore);
@@ -4176,13 +4169,13 @@ for (let i = nodesToSort.length - 1, l = -1; i &#x3e; l; i--) {
   // Spaces after delimiter.
   // If there is `;` right after the declaration, save it with the
   // declaration and mark it for removing from parent node:
-  if (block.get(i + 1) &#x26;&#x26; block.get(i + 1).is(&#x27;declarationDelimiter&#x27;)) {
+  if (block.get(i + 1) &amp;&amp; block.get(i + 1).is('declarationDelimiter')) {
     i += 1;
     node = block.get(i);
     nodesToDelete.push(i);
     extendedNode.delim = node;
 
-    if (node.syntax !== &#x27;sass&#x27;) {
+    if (node.syntax !== 'sass') {
       // Save spaces and comments which follow right after
       // the declaration and mark them for removing from parent node:
       let spacesAfterDelimiter = this._getSpacesAndCommentsAfterNode(block, i);
@@ -4227,19 +4220,19 @@ for (let i = nodesToSort.length - 1, l = -1; i &#x3e; l; i--) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getLastGroupIndex() {
-  return this.value &#x26;&#x26; this.value[&#x27;...&#x27;] ? this.value[&#x27;...&#x27;].group : Infinity;
+  return this.value &amp;&amp; this.value['...'] ? this.value['...'].group : Infinity;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (!propertyName) return null;
 
-// Check if current node&#x27;s property name is in sort order.
+// Check if current node's property name is in sort order.
 let propertyIndex = this.value[propertyName];
-// If the declaration&#x27;s property is in order&#x27;s list, save its
+// If the declaration's property is in order's list, save its
 // group and property indices. Otherwise set them to 10000, so
 // declaration appears at the bottom of a sorted list:
-extendedNode.groupIndex = propertyIndex &#x26;&#x26; propertyIndex.group &#x3e; -1 ? propertyIndex.group : this.<span class="apidocCodeKeywordSpan
+extendedNode.groupIndex = propertyIndex &amp;&amp; propertyIndex.group &gt; -1 ? propertyIndex.group : this.<span class="apidocCodeKeywordSpan
 ">_getLastGroupIndex</span>();
-extendedNode.propertyIndex = propertyIndex &#x26;&#x26; propertyIndex.prop &#x3e; -1 ? propertyIndex.prop : this._getLastPropertyIndex
+extendedNode.propertyIndex = propertyIndex &amp;&amp; propertyIndex.prop &gt; -1 ? propertyIndex.prop : this._getLastPropertyIndex
 ();
 
 // Spaces before node.
@@ -4260,18 +4253,18 @@ extendedNode.spacesBeforeNode = this._getNodesByIndex(block, spacesBefore);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getLastPropertyIndex() {
-  return this.value &#x26;&#x26; this.value[&#x27;...&#x27;] ? this.value[&#x27;...&#x27;].prop : Infinity;
+  return this.value &amp;&amp; this.value['...'] ? this.value['...'].prop : Infinity;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-// Check if current node&#x27;s property name is in sort order.
+// Check if current node's property name is in sort order.
 let propertyIndex = this.value[propertyName];
-// If the declaration&#x27;s property is in order&#x27;s list, save its
+// If the declaration's property is in order's list, save its
 // group and property indices. Otherwise set them to 10000, so
 // declaration appears at the bottom of a sorted list:
-extendedNode.groupIndex = propertyIndex &#x26;&#x26; propertyIndex.group &#x3e; -1 ? propertyIndex.group : this._getLastGroupIndex
+extendedNode.groupIndex = propertyIndex &amp;&amp; propertyIndex.group &gt; -1 ? propertyIndex.group : this._getLastGroupIndex
 ();
-extendedNode.propertyIndex = propertyIndex &#x26;&#x26; propertyIndex.prop &#x3e; -1 ? propertyIndex.prop : this.<span class="apidocCodeKeywordSpan
+extendedNode.propertyIndex = propertyIndex &amp;&amp; propertyIndex.prop &gt; -1 ? propertyIndex.prop : this.<span class="apidocCodeKeywordSpan
 ">_getLastPropertyIndex</span>();
 
 // Spaces before node.
@@ -4293,14 +4286,14 @@ let spacesBeforeDelimiter = this._getSpacesAndCommentsAfterNode(block, i);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getNodesByIndex(block, index) {
-  return index.map(i =&#x3e; block.get(i));
+  return index.map(i =&gt; block.get(i));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // group and property indices. Otherwise set them to 10000, so
 // declaration appears at the bottom of a sorted list:
-extendedNode.groupIndex = propertyIndex &#x26;&#x26; propertyIndex.group &#x3e; -1 ? propertyIndex.group : this._getLastGroupIndex
+extendedNode.groupIndex = propertyIndex &amp;&amp; propertyIndex.group &gt; -1 ? propertyIndex.group : this._getLastGroupIndex
 ();
-extendedNode.propertyIndex = propertyIndex &#x26;&#x26; propertyIndex.prop &#x3e; -1 ? propertyIndex.prop : this._getLastPropertyIndex
+extendedNode.propertyIndex = propertyIndex &amp;&amp; propertyIndex.prop &gt; -1 ? propertyIndex.prop : this._getLastPropertyIndex
 ();
 
 // Spaces before node.
@@ -4327,13 +4320,13 @@ i += spacesBeforeDelimiter.length;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getSortableIncludeName(node) {
   // Divide `include` into mixins with specific name
-  // (e. g. `$include breakpoint`), and the rest — `$include`.
+  // (e. g. `$include breakpoint`), and the rest â€” `$include`.
   let mixinName;
 
-  if (node.syntax === &#x27;less&#x27;) {
+  if (node.syntax === 'less') {
     // `node.first()` is class and `node.first().first()` is ident.
     mixinName = node.first().first().content;
-  } else if (node.syntax === &#x27;sass&#x27; &#x26;&#x26; node.first().content === &#x27;+&#x27;) {
+  } else if (node.syntax === 'sass' &amp;&amp; node.first().content === '+') {
     // `node.first()` is `+` and `node.get(1)` is ident.
     mixinName = node.get(1).content;
   } else {
@@ -4342,25 +4335,25 @@ i += spacesBeforeDelimiter.length;
     mixinName = node.get(2).content;
   }
 
-  let includeMixinName = &#x27;$include &#x27; + mixinName;
-  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : &#x27;$include&#x27;;
+  let includeMixinName = '$include ' + mixinName;
+  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : '$include';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-  let includeMixinName = &#x27;$include &#x27; + mixinName;
-  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : &#x27;$include&#x27;;
+  let includeMixinName = '$include ' + mixinName;
+  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : '$include';
 },
 
 _getSortableName(node) {
-  if (node.is(&#x27;extend&#x27;)) return &#x27;$extend&#x27;;
-  if (node.is(&#x27;include&#x27;)) return this.<span class="apidocCodeKeywordSpan">_getSortableIncludeName</span>(node);else return
+  if (node.is('extend')) return '$extend';
+  if (node.is('include')) return this.<span class="apidocCodeKeywordSpan">_getSortableIncludeName</span>(node);else return
  this._getSortablePropertyName(node);
 },
 
 _getSortablePropertyName(node) {
-  if (node.is(&#x27;declaration&#x27;)) {
-    let property = node.first(&#x27;property&#x27;).first();
-    return property.is(&#x27;variable&#x27;) ? &#x27;$variable&#x27; : property.content;
+  if (node.is('declaration')) {
+    let property = node.first('property').first();
+    return property.is('variable') ? '$variable' : property.content;
   }
 ...</pre></li>
     </ul>
@@ -4375,8 +4368,8 @@ _getSortablePropertyName(node) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getSortableName(node) {
-  if (node.is(&#x27;extend&#x27;)) return &#x27;$extend&#x27;;
-  if (node.is(&#x27;include&#x27;)) return this._getSortableIncludeName(node);else return this._getSortablePropertyName(node);
+  if (node.is('extend')) return '$extend';
+  if (node.is('include')) return this._getSortableIncludeName(node);else return this._getSortablePropertyName(node);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   },
@@ -4389,9 +4382,9 @@ let extendedNode = { i: i, node: node };
 let propertyName = this.<span class="apidocCodeKeywordSpan">_getSortableName</span>(node);
 if (!propertyName) return null;
 
-// Check if current node&#x27;s property name is in sort order.
+// Check if current node's property name is in sort order.
 let propertyIndex = this.value[propertyName];
-// If the declaration&#x27;s property is in order&#x27;s list, save its
+// If the declaration's property is in order's list, save its
 // group and property indices. Otherwise set them to 10000, so
 // declaration appears at the bottom of a sorted list:
 ...</pre></li>
@@ -4407,30 +4400,30 @@ let propertyIndex = this.value[propertyName];
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_getSortablePropertyName(node) {
-  if (node.is(&#x27;declaration&#x27;)) {
-    let property = node.first(&#x27;property&#x27;).first();
-    return property.is(&#x27;variable&#x27;) ? &#x27;$variable&#x27; : property.content;
+  if (node.is('declaration')) {
+    let property = node.first('property').first();
+    return property.is('variable') ? '$variable' : property.content;
   }
 
-  let atkeyword = node.first(&#x27;atkeyword&#x27;);
-  if (atkeyword &#x26;&#x26; atkeyword.first().content === &#x27;import&#x27;) return &#x27;$import&#x27;;
+  let atkeyword = node.first('atkeyword');
+  if (atkeyword &amp;&amp; atkeyword.first().content === 'import') return '$import';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-  let includeMixinName = &#x27;$include &#x27; + mixinName;
-  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : &#x27;$include&#x27;;
+  let includeMixinName = '$include ' + mixinName;
+  return this.value.hasOwnProperty(includeMixinName) ? includeMixinName : '$include';
 },
 
 _getSortableName(node) {
-  if (node.is(&#x27;extend&#x27;)) return &#x27;$extend&#x27;;
-  if (node.is(&#x27;include&#x27;)) return this._getSortableIncludeName(node);else return this.<span class="apidocCodeKeywordSpan
+  if (node.is('extend')) return '$extend';
+  if (node.is('include')) return this._getSortableIncludeName(node);else return this.<span class="apidocCodeKeywordSpan
 ">_getSortablePropertyName</span>(node);
 },
 
 _getSortablePropertyName(node) {
-  if (node.is(&#x27;declaration&#x27;)) {
-    let property = node.first(&#x27;property&#x27;).first();
-    return property.is(&#x27;variable&#x27;) ? &#x27;$variable&#x27; : property.content;
+  if (node.is('declaration')) {
+    let property = node.first('property').first();
+    return property.is('variable') ? '$variable' : property.content;
   }
 ...</pre></li>
     </ul>
@@ -4451,13 +4444,13 @@ _getSortablePropertyName(node) {
   // Skip node itself.
   i++;
 
-  for (let l = node.length; i &#x3c; l; i++) {
+  for (let l = node.length; i &lt; l; i++) {
     let currentNode = node.get(i);
 
     // If node is nor spaces neither comment, stop.
     if (!this._isSpaceOrComment(currentNode)) break;
 
-    if (currentNode.is(&#x27;multilineComment&#x27;) || currentNode.is(&#x27;singlelineComment&#x27;)) {
+    if (currentNode.is('multilineComment') || currentNode.is('singlelineComment')) {
       positions.push(i);
       continue;
     }
@@ -4465,12 +4458,12 @@ _getSortablePropertyName(node) {
     // If there are any line breaks in a node with spaces, stop and
     // split the node into two: one with spaces before line break
     // and one with `\n` symbol and everything that goes after.
-    // Combine the first one with declaration/@-rule&#x27;s node:
-    let linebreakIndex = currentNode.content.indexOf(&#x27;\n&#x27;);
+    // Combine the first one with declaration/@-rule's node:
+    let linebreakIndex = currentNode.content.indexOf('\n');
     if (linebreakIndex !== -1) {
       var s = currentNode.content.substring(0, linebreakIndex);
-      if (s === &#x27;&#x27;) break;
-      var space = gonzales.createNode({ type: &#x27;space&#x27;, content: s });
+      if (s === '') break;
+      var space = gonzales.createNode({ type: 'space', content: s });
       node.insert(i + 1, space);
       positions.push(i + 1);
       currentNode.content = currentNode.content.substring(linebreakIndex);
@@ -4483,7 +4476,7 @@ _getSortablePropertyName(node) {
   return positions;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-extendedNode.propertyIndex = propertyIndex &#x26;&#x26; propertyIndex.prop &#x3e; -1 ? propertyIndex.prop : this._getLastPropertyIndex
+extendedNode.propertyIndex = propertyIndex &amp;&amp; propertyIndex.prop &gt; -1 ? propertyIndex.prop : this._getLastPropertyIndex
 ();
 
 // Spaces before node.
@@ -4516,7 +4509,7 @@ i += spacesBeforeDelimiter.length;
   let positions = [];
   let sendPositions = false;
 
-  for (let l = node.length; i &#x3c; l; i++) {
+  for (let l = node.length; i &lt; l; i++) {
     let currentNode = node.get(i);
 
     // If the node is declaration or @-rule, stop and return all
@@ -4532,8 +4525,8 @@ i += spacesBeforeDelimiter.length;
   return sendPositions ? positions : null;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    // Don&#x27;t cache `block.length` since we may insert new nodes into it.
-    for (let i = 0; i &#x3c; block.length; i++) {
+    // Don't cache `block.length` since we may insert new nodes into it.
+    for (let i = 0; i &lt; block.length; i++) {
 let node = block.get(i);
 if (!this._isAcceptableNode(node)) continue;
 
@@ -4560,18 +4553,18 @@ if (!extendedNode) continue;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_insertSortablesToBlock(nodesToSort, node) {
-  if (node.syntax === &#x27;sass&#x27;) this._cleanSassLinebreaks(node);
+  if (node.syntax === 'sass') this._cleanSassLinebreaks(node);
 
-  for (let i = nodesToSort.length - 1, l = -1; i &#x3e; l; i--) {
+  for (let i = nodesToSort.length - 1, l = -1; i &gt; l; i--) {
     let currentNode = nodesToSort[i];
     let prevNode = nodesToSort[i - 1];
     let spacesBeforeNode = currentNode.spacesBeforeNode || [];
     let spacesBeforeDelimiter = currentNode.spacesBeforeDelimiter || [];
     let spacesAfterDelimiter = currentNode.spacesAfterDelimiter || [];
 
-    if (node.syntax === &#x27;sass&#x27; &#x26;&#x26; spacesBeforeNode.length) {
+    if (node.syntax === 'sass' &amp;&amp; spacesBeforeNode.length) {
       let space = spacesBeforeNode[0];
-      space.content = space.content.replace(/\n/, &#x27;&#x27;);
+      space.content = space.content.replace(/\n/, '');
     }
 
     spacesBeforeNode.reverse().map(this._removeEmptyLines);
@@ -4580,35 +4573,35 @@ if (!extendedNode) continue;
 
     // Divide declarations from different groups with
     // an empty line:
-    if (prevNode &#x26;&#x26; currentNode.groupIndex &#x3e; prevNode.groupIndex) {
+    if (prevNode &amp;&amp; currentNode.groupIndex &gt; prevNode.groupIndex) {
       let space = spacesBeforeNode[0];
-      if (space &#x26;&#x26; space.is(&#x27;space&#x27;) &#x26;&#x26; (space.syntax === &#x27;sass&#x27; || space.content.match(/\n/g) &#x26;&#x26; space.content.match(/\n/g).length
- &#x3c; 2)) {
-        space.content = &#x27;\n&#x27; + space.content;
+      if (space &amp;&amp; space.is('space') &amp;&amp; (space.syntax === 'sass' || space.content.match(/\n/g) &amp;&amp; space.content.match(/\n/g).length
+ &lt; 2)) {
+        space.content = '\n' + space.content;
       }
     }
 
-    for (let j = 0, nl = spacesAfterDelimiter.length; j &#x3c; nl; j++) {
+    for (let j = 0, nl = spacesAfterDelimiter.length; j &lt; nl; j++) {
       node.content.unshift(spacesAfterDelimiter[j]);
     }
 
     if (currentNode.delim) {
       node.content.unshift(currentNode.delim);
-    } else if (i !== nodesToSort.length - 1 &#x26;&#x26; (currentNode.node.is(&#x27;declaration&#x27;) || currentNode.node.is(&#x27;extend&#x27;))) {
+    } else if (i !== nodesToSort.length - 1 &amp;&amp; (currentNode.node.is('declaration') || currentNode.node.is('extend'))) {
       let delimiter = gonzales.createNode({
-        type: &#x27;declarationDelimiter&#x27;,
-        content: currentNode.node.syntax === &#x27;sass&#x27; ? &#x27;\n&#x27; : &#x27;;&#x27;
+        type: 'declarationDelimiter',
+        content: currentNode.node.syntax === 'sass' ? '\n' : ';'
       });
       node.content.unshift(delimiter);
     }
 
-    for (let j = 0, nl = spacesBeforeDelimiter.length; j &#x3c; nl; j++) {
+    for (let j = 0, nl = spacesBeforeDelimiter.length; j &lt; nl; j++) {
       node.content.unshift(spacesBeforeDelimiter[j]);
     }
 
     node.content.unshift(currentNode.node);
 
-    for (let j = 0, nl = spacesBeforeNode.length; j &#x3c; nl; j++) {
+    for (let j = 0, nl = spacesBeforeNode.length; j &lt; nl; j++) {
       node.content.unshift(spacesBeforeNode[j]);
     }
   }
@@ -4642,7 +4635,7 @@ _removeEmptyLines(node) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_isAcceptableNode(node) {
-  const NODES = [&#x27;atrule&#x27;, &#x27;declaration&#x27;, &#x27;extend&#x27;, &#x27;include&#x27;, &#x27;multilineComment&#x27;, &#x27;singlelineComment&#x27;, &#x27;space&#x27;];
+  const NODES = ['atrule', 'declaration', 'extend', 'include', 'multilineComment', 'singlelineComment', 'space'];
   return NODES.indexOf(node.type) !== -1;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -4650,8 +4643,8 @@ _removeEmptyLines(node) {
     let sortables = [];
     let nodesToDelete = [];
 
-    // Don&#x27;t cache `block.length` since we may insert new nodes into it.
-    for (let i = 0; i &#x3c; block.length; i++) {
+    // Don't cache `block.length` since we may insert new nodes into it.
+    for (let i = 0; i &lt; block.length; i++) {
 let node = block.get(i);
 if (!this.<span class="apidocCodeKeywordSpan">_isAcceptableNode</span>(node)) continue;
 
@@ -4674,20 +4667,20 @@ i += spacesBeforeNode.length;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_isSpaceOrComment(node) {
-  const SC = [&#x27;multilineComment&#x27;, &#x27;singlelineComment&#x27;, &#x27;space&#x27;];
+  const SC = ['multilineComment', 'singlelineComment', 'space'];
   return SC.indexOf(node.type) !== -1;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     // Skip node itself.
     i++;
 
-    for (let l = node.length; i &#x3c; l; i++) {
+    for (let l = node.length; i &lt; l; i++) {
 let currentNode = node.get(i);
 
 // If node is nor spaces neither comment, stop.
 if (!this.<span class="apidocCodeKeywordSpan">_isSpaceOrComment</span>(currentNode)) break;
 
-if (currentNode.is(&#x27;multilineComment&#x27;) || currentNode.is(&#x27;singlelineComment&#x27;)) {
+if (currentNode.is('multilineComment') || currentNode.is('singlelineComment')) {
   positions.push(i);
   continue;
 }
@@ -4728,7 +4721,7 @@ if (currentNode.is(&#x27;multilineComment&#x27;) || currentNode.is(&#x27;singlel
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_removeEmptyLines(node) {
-  node.content = node.content.replace(/\n[\s\t\n\r]*\n/, &#x27;\n&#x27;);
+  node.content = node.content.replace(/\n[\s\t\n\r]*\n/, '\n');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4746,8 +4739,8 @@ if (currentNode.is(&#x27;multilineComment&#x27;) || currentNode.is(&#x27;singlel
   let sortables = [];
   let nodesToDelete = [];
 
-  // Don&#x27;t cache `block.length` since we may insert new nodes into it.
-  for (let i = 0; i &#x3c; block.length; i++) {
+  // Don't cache `block.length` since we may insert new nodes into it.
+  for (let i = 0; i &lt; block.length; i++) {
     let node = block.get(i);
     if (!this._isAcceptableNode(node)) continue;
 
@@ -4767,8 +4760,8 @@ if (currentNode.is(&#x27;multilineComment&#x27;) || currentNode.is(&#x27;singlel
     sortables.push(extendedNode);
   }
 
-  nodesToDelete.sort((a, b) =&#x3e; a - b);
-  for (let x = nodesToDelete.length - 1; x &#x3e; -1; x--) block.removeChild(nodesToDelete[x]);
+  nodesToDelete.sort((a, b) =&gt; a - b);
+  for (let x = nodesToDelete.length - 1; x &gt; -1; x--) block.removeChild(nodesToDelete[x]);
 
   return sortables;
 }</pre></li>
@@ -4801,7 +4794,7 @@ _processBlock(block) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_sortLeftovers(a, b) {
-  let prefixes = [&#x27;-webkit-&#x27;, &#x27;-moz-&#x27;, &#x27;-ms-&#x27;, &#x27;-o-&#x27;, &#x27;&#x27;];
+  let prefixes = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
   let prefixesRegExp = /^(-webkit-|-moz-|-ms-|-o-)(.*)$/;
 
   // Get property name (i.e. `color`, `-o-animation`):
@@ -4809,36 +4802,36 @@ _processBlock(block) {
   b = b.node.first().first().content;
 
   // Get prefix and unprefixed part. For example:
-  // [&#x27;-o-animation&#x27;, &#x27;-o-&#x27;, &#x27;animation&#x27;]
-  // [&#x27;color&#x27;, &#x27;&#x27;, &#x27;color&#x27;]
-  a = a.match(prefixesRegExp) || [a, &#x27;&#x27;, a];
-  b = b.match(prefixesRegExp) || [b, &#x27;&#x27;, b];
+  // ['-o-animation', '-o-', 'animation']
+  // ['color', '', 'color']
+  a = a.match(prefixesRegExp) || [a, '', a];
+  b = b.match(prefixesRegExp) || [b, '', b];
 
   if (a[2] !== b[2]) {
     // If unprefixed parts are different (i.e. `border` and
     // `color`), compare them:
-    return a[2] &#x3c;= b[2] ? -1 : 1;
+    return a[2] &lt;= b[2] ? -1 : 1;
   } else {
     // If unprefixed parts are identical (i.e. `border` in
     // `-moz-border` and `-o-border`), compare prefixes.
     // They should go in the same order they are set
     // in `prefixes` array.
-    return prefixes.indexOf(a[1]) &#x3c;= prefixes.indexOf(b[1]) ? -1 : 1;
+    return prefixes.indexOf(a[1]) &lt;= prefixes.indexOf(b[1]) ? -1 : 1;
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-// If a&#x27;s group index is higher than b&#x27;s group index, in
+// If a's group index is higher than b's group index, in
 // a sorted list a appears after b:
 if (a.groupIndex !== b.groupIndex) return a.groupIndex - b.groupIndex;
 
 // If a and b belong to leftovers and `sort-order-fallback`
 // option is set to `abc`, sort properties alphabetically:
-if (a.groupIndex === this._getLastGroupIndex() &#x26;&#x26; this._config[&#x27;sort-order-fallback&#x27;]) {
+if (a.groupIndex === this._getLastGroupIndex() &amp;&amp; this._config['sort-order-fallback']) {
   return this.<span class="apidocCodeKeywordSpan">_sortLeftovers</span>(a, b);
 }
 
-// If a and b have the same group index, and a&#x27;s property index
-// is higher than b&#x27;s property index, in a sorted list
+// If a and b have the same group index, and a's property index
+// is higher than b's property index, in a sorted list
 // a appears after b:
 if (a.propertyIndex !== b.propertyIndex) return a.propertyIndex - b.propertyIndex;
 ...</pre></li>
@@ -4854,19 +4847,19 @@ if (a.propertyIndex !== b.propertyIndex) return a.propertyIndex - b.propertyInde
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_sortNodes(nodes) {
-  nodes.sort((a, b) =&#x3e; {
-    // If a&#x27;s group index is higher than b&#x27;s group index, in
+  nodes.sort((a, b) =&gt; {
+    // If a's group index is higher than b's group index, in
     // a sorted list a appears after b:
     if (a.groupIndex !== b.groupIndex) return a.groupIndex - b.groupIndex;
 
     // If a and b belong to leftovers and `sort-order-fallback`
     // option is set to `abc`, sort properties alphabetically:
-    if (a.groupIndex === this._getLastGroupIndex() &#x26;&#x26; this._config[&#x27;sort-order-fallback&#x27;]) {
+    if (a.groupIndex === this._getLastGroupIndex() &amp;&amp; this._config['sort-order-fallback']) {
       return this._sortLeftovers(a, b);
     }
 
-    // If a and b have the same group index, and a&#x27;s property index
-    // is higher than b&#x27;s property index, in a sorted list
+    // If a and b have the same group index, and a's property index
+    // is higher than b's property index, in a sorted list
     // a appears after b:
     if (a.propertyIndex !== b.propertyIndex) return a.propertyIndex - b.propertyIndex;
 
@@ -4904,7 +4897,7 @@ _processBlock(block) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; []</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; []</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -4920,7 +4913,7 @@ _processBlock(block) {
     <li>description and source-code<pre class="apidocCodePre">process(ast, config) {
   this._config = config;
   // Sort properties only inside blocks.
-  ast.traverseByType(&#x27;block&#x27;, this._processBlock.bind(this));
+  ast.traverseByType('block', this._processBlock.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  */
@@ -4928,7 +4921,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -4938,7 +4931,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -4952,11 +4945,11 @@ _readFile(path) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">setValue(value) {
-  if (!Array.isArray(value)) throw new Error(&#x27;The option accepts only array of properties.&#x27;);
+  if (!Array.isArray(value)) throw new Error('The option accepts only array of properties.');
 
   var order = {};
 
-  if (typeof value[0] === &#x27;string&#x27;) {
+  if (typeof value[0] === 'string') {
     // If there is only one group of properties.
     value.forEach(function (prop, propIndex) {
       order[prop] = { group: 0, prop: propIndex };
@@ -4976,7 +4969,7 @@ return this.value_;
   },
   set value(value) {
 let valueType = typeof value;
-let pattern = this.accepts &#x26;&#x26; this.accepts[valueType];
+let pattern = this.accepts &amp;&amp; this.accepts[valueType];
 
 if (this.setValue) {
   this.value_ = this.<span class="apidocCodeKeywordSpan">setValue</span>(value);
@@ -4985,8 +4978,8 @@ if (this.setValue) {
 
 if (!pattern) throw new Error(Errors.unacceptableValueType(valueType, this.accepts));
 
-if (valueType === &#x27;boolean&#x27;) {
-  if (pattern.indexOf(value) &#x3c; 0) throw new Error(Errors.unacceptableBoolean(pattern));
+if (valueType === 'boolean') {
+  if (pattern.indexOf(value) &lt; 0) throw new Error(Errors.unacceptableBoolean(pattern));
 ...</pre></li>
     </ul>
 
@@ -5010,7 +5003,7 @@ if (valueType === &#x27;boolean&#x27;) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; []</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; []</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5030,7 +5023,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5040,7 +5033,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5067,11 +5060,11 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;propertyDelimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.get(i + 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('propertyDelimiter', function (delimiter, i, parent) {
+    if (parent.get(i + 1).is('space')) {
       detected.push(parent.get(i + 1).content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5092,15 +5085,15 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;propertyDelimiter&#x27;, function (delimiter, i, parent) {
-    if (delimiter.syntax === &#x27;sass&#x27; &#x26;&#x26; !parent.get(i - 1)) return null;
+  ast.traverseByType('propertyDelimiter', function (delimiter, i, parent) {
+    if (delimiter.syntax === 'sass' &amp;&amp; !parent.get(i - 1)) return null;
 
     // Remove any spaces after colon:
-    if (parent.get(i + 1).is(&#x27;space&#x27;)) parent.removeChild(i + 1);
+    if (parent.get(i + 1).is('space')) parent.removeChild(i + 1);
     // If the value set in config is not empty, add spaces:
-    if (value !== &#x27;&#x27;) {
+    if (value !== '') {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i + 1, space);
@@ -5115,7 +5108,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5125,7 +5118,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5154,11 +5147,11 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;combinator&#x27;, function (combinator, i, parent) {
-    if (parent.get(i + 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('combinator', function (combinator, i, parent) {
+    if (parent.get(i + 1).is('space')) {
       detected.push(parent.get(i + 1).content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5179,12 +5172,12 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;combinator&#x27;, function (combinator, i, parent) {
-    if (parent.get(i + 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('combinator', function (combinator, i, parent) {
+    if (parent.get(i + 1).is('space')) {
       parent.get(i + 1).content = value;
     } else {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i + 1, space);
@@ -5197,7 +5190,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5207,7 +5200,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5237,12 +5230,12 @@ _readFile(path) {
   let detected = [];
 
   ast.traverse(function (node) {
-    if (!node.is(&#x27;block&#x27;) &#x26;&#x26; !node.is(&#x27;atrulers&#x27;)) return;
+    if (!node.is('block') &amp;&amp; !node.is('atrulers')) return;
 
-    if (node.first().is(&#x27;space&#x27;)) {
+    if (node.first().is('space')) {
       detected.push(node.first().content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5265,13 +5258,13 @@ _readFile(path) {
 
   ast.traverse(function (node) {
     // If found block node stop at the next one for space check
-    if (!node.is(&#x27;block&#x27;) &#x26;&#x26; !node.is(&#x27;atrulers&#x27;)) return;
+    if (!node.is('block') &amp;&amp; !node.is('atrulers')) return;
 
-    if (node.first() &#x26;&#x26; node.first().is(&#x27;space&#x27;)) {
+    if (node.first() &amp;&amp; node.first().is('space')) {
       node.first().content = value;
-    } else if (value !== &#x27;&#x27;) {
+    } else if (value !== '') {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       node.insert(0, space);
@@ -5284,7 +5277,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5294,7 +5287,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5323,17 +5316,17 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;delimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.is(&#x27;arguments&#x27;)) return;
+  ast.traverseByType('delimiter', function (delimiter, i, parent) {
+    if (parent.is('arguments')) return;
 
     var nextNode = parent.get(i + 1);
 
-    if (nextNode &#x26;&#x26; nextNode.is(&#x27;space&#x27;)) {
+    if (nextNode &amp;&amp; nextNode.is('space')) {
       detected.push(nextNode.content);
-    } else if (nextNode.first() &#x26;&#x26; nextNode.first().is(&#x27;space&#x27;)) {
+    } else if (nextNode.first() &amp;&amp; nextNode.first().is('space')) {
       detected.push(nextNode.first().content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5354,18 +5347,18 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;delimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.is(&#x27;arguments&#x27;)) return;
+  ast.traverseByType('delimiter', function (delimiter, i, parent) {
+    if (parent.is('arguments')) return;
 
     var nextNode = parent.get(i + 1);
 
-    if (nextNode.is(&#x27;space&#x27;)) {
+    if (nextNode.is('space')) {
       nextNode.content = value;
-    } else if (nextNode.first().is(&#x27;space&#x27;)) {
+    } else if (nextNode.first().is('space')) {
       nextNode.first().content = value;
     } else {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       nextNode.insert(0, space);
@@ -5378,7 +5371,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5388,7 +5381,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5417,13 +5410,13 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByTypes([&#x27;block&#x27;, &#x27;atrulers&#x27;], function (node) {
+  ast.traverseByTypes(['block', 'atrulers'], function (node) {
     // For the block node, find its last (the deepest) child
     var whitespaceNode = getLastWhitespaceNode(node);
     if (whitespaceNode) {
       detected.push(whitespaceNode.content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5443,7 +5436,7 @@ _readFile(path) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">process = function (ast, config) {
   valueFromSettings = this.value;
-  blockIndent = config[&#x27;block-indent&#x27;];
+  blockIndent = config['block-indent'];
 
   processBlock(ast);
 }</pre></li>
@@ -5453,7 +5446,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5463,7 +5456,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5492,11 +5485,11 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;propertyDelimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.get(i - 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('propertyDelimiter', function (delimiter, i, parent) {
+    if (parent.get(i - 1).is('space')) {
       detected.push(parent.get(i - 1).content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5517,18 +5510,18 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;propertyDelimiter&#x27;, function (delimiter, i, parent) {
-    if (delimiter.syntax === &#x27;sass&#x27; &#x26;&#x26; !parent.get(i - 1)) return;
+  ast.traverseByType('propertyDelimiter', function (delimiter, i, parent) {
+    if (delimiter.syntax === 'sass' &amp;&amp; !parent.get(i - 1)) return;
 
     // Remove any spaces before colon:
-    if (parent.get(i - 1).is(&#x27;space&#x27;)) {
+    if (parent.get(i - 1).is('space')) {
       parent.removeChild(--i);
     }
 
     // If the value set in config is not empty, add spaces:
-    if (value !== &#x27;&#x27;) {
+    if (value !== '') {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i, space);
@@ -5541,7 +5534,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5551,7 +5544,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5580,11 +5573,11 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;combinator&#x27;, function (combinator, i, parent) {
-    if (parent.get(i - 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('combinator', function (combinator, i, parent) {
+    if (parent.get(i - 1).is('space')) {
       detected.push(parent.get(i - 1).content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5605,12 +5598,12 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;combinator&#x27;, function (combinator, i, parent) {
-    if (parent.get(i - 1).is(&#x27;space&#x27;)) {
+  ast.traverseByType('combinator', function (combinator, i, parent) {
+    if (parent.get(i - 1).is('space')) {
       parent.get(i - 1).content = value;
     } else {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i, space);
@@ -5623,7 +5616,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5633,7 +5626,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5662,19 +5655,19 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   var detected = [];
 
-  ast.traverseByTypes([&#x27;block&#x27;, &#x27;value&#x27;], function (block, i, parent) {
-    if (block.is(&#x27;value&#x27;) &#x26;&#x26; !block.first().is(&#x27;block&#x27;)) return;
+  ast.traverseByTypes(['block', 'value'], function (block, i, parent) {
+    if (block.is('value') &amp;&amp; !block.first().is('block')) return;
 
     var previousNode = parent.get(i - 1);
     if (!previousNode) return;
 
-    // If it&#x27;s spaces, modify this node.
-    // If it&#x27;s something different from spaces, add a space node to
+    // If it's spaces, modify this node.
+    // If it's something different from spaces, add a space node to
     // the end:
-    if (previousNode.is(&#x27;space&#x27;)) {
+    if (previousNode.is('space')) {
       detected.push(previousNode.content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5696,20 +5689,20 @@ _readFile(path) {
   let value = this.value;
 
   // If found block node stop at the next one for space check.
-  ast.traverseByTypes([&#x27;block&#x27;, &#x27;value&#x27;], function (block, i, parent) {
-    if (block.is(&#x27;value&#x27;) &#x26;&#x26; !block.first().is(&#x27;block&#x27;)) return;
+  ast.traverseByTypes(['block', 'value'], function (block, i, parent) {
+    if (block.is('value') &amp;&amp; !block.first().is('block')) return;
 
     var previousNode = parent.get(i - 1);
     if (!previousNode) return;
 
-    // If it&#x27;s spaces, modify this node.
-    // If it&#x27;s something different from spaces, add a space node to
+    // If it's spaces, modify this node.
+    // If it's something different from spaces, add a space node to
     // the end:
-    if (previousNode.is(&#x27;space&#x27;)) {
+    if (previousNode.is('space')) {
       previousNode.content = value;
-    } else if (value !== &#x27;&#x27;) {
+    } else if (value !== '') {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i, space);
@@ -5722,7 +5715,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5732,7 +5725,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5761,14 +5754,14 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">detect = function (ast) {
   let detected = [];
 
-  ast.traverseByType(&#x27;delimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.is(&#x27;arguments&#x27;)) return;
+  ast.traverseByType('delimiter', function (delimiter, i, parent) {
+    if (parent.is('arguments')) return;
 
     var previousNode = parent.get(i - 1);
-    if (previousNode.is(&#x27;space&#x27;)) {
+    if (previousNode.is('space')) {
       detected.push(previousNode.content);
     } else {
-      detected.push(&#x27;&#x27;);
+      detected.push('');
     }
   });
 
@@ -5789,15 +5782,15 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;delimiter&#x27;, function (delimiter, i, parent) {
-    if (parent.is(&#x27;arguments&#x27;)) return;
+  ast.traverseByType('delimiter', function (delimiter, i, parent) {
+    if (parent.is('arguments')) return;
 
     var previousNode = parent.get(i - 1);
-    if (previousNode.is(&#x27;space&#x27;)) {
+    if (previousNode.is('space')) {
       previousNode.content = value;
     } else {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i, space);
@@ -5810,7 +5803,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5820,7 +5813,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5849,8 +5842,8 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;declarationDelimiter&#x27;, (delimiter, i, parent) =&#x3e; {
-    // Grom user&#x27;s point of view &#x22;declaration&#x22; includes semicolons
+  ast.traverseByType('declarationDelimiter', (delimiter, i, parent) =&gt; {
+    // Grom user's point of view "declaration" includes semicolons
     // and comments placed on the same line.
     // So group those things together:
     var declarationEnd = getDeclarationEnd(parent, i);
@@ -5861,11 +5854,11 @@ _readFile(path) {
     }
 
     var nextNode = parent.get(i + 1);
-    if (nextNode.is(&#x27;space&#x27;)) {
+    if (nextNode.is('space')) {
       nextNode.content = value;
     } else {
       var space = gonzales.createNode({
-        type: &#x27;space&#x27;,
+        type: 'space',
         content: value
       });
       parent.insert(i + 1, space);
@@ -5878,7 +5871,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5888,7 +5881,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5920,11 +5913,11 @@ _readFile(path) {
   let detected = [];
 
   var lastChild = ast.last();
-  if (lastChild.is(&#x27;space&#x27;) &#x26;&#x26; lastChild.content !== &#x27;\n&#x27; &#x26;&#x26; lastChild.content.match(/^[ \n\t]+$/)) {
+  if (lastChild.is('space') &amp;&amp; lastChild.content !== '\n' &amp;&amp; lastChild.content.match(/^[ \n\t]+$/)) {
     detected.push(false);
   }
 
-  ast.traverseByType(&#x27;space&#x27;, function (space) {
+  ast.traverseByType('space', function (space) {
     if (space.content.match(/[ \t]\n/)) detected.push(false);
   });
 
@@ -5944,11 +5937,11 @@ _readFile(path) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   var lastChild = ast.last();
-  if (lastChild.is(&#x27;space&#x27;)) {
-    lastChild.content = trim(lastChild.content).replace(/[ \t]+$/, &#x27;&#x27;).replace(/[\n]+/g, &#x27;\n&#x27;);
+  if (lastChild.is('space')) {
+    lastChild.content = trim(lastChild.content).replace(/[ \t]+$/, '').replace(/[\n]+/g, '\n');
   }
 
-  ast.traverseByType(&#x27;space&#x27;, function (space) {
+  ast.traverseByType('space', function (space) {
     space.content = trim(space.content);
   });
 }</pre></li>
@@ -5958,7 +5951,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -5968,7 +5961,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -5995,7 +5988,7 @@ _readFile(path) {
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
   let value = this.value;
 
-  ast.traverseByType(&#x27;space&#x27;, function (space) {
+  ast.traverseByType('space', function (space) {
     space.content = space.content.replace(/\t/, value);
   });
 }</pre></li>
@@ -6005,7 +5998,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -6015,7 +6008,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -6046,20 +6039,20 @@ _readFile(path) {
 
   ast.traverse(function (node, index, parent) {
     // If we see a zero with unit and it is not degree,
-    // then we don’t have an option
-    if (node.is(&#x27;percentage&#x27;) &#x26;&#x26; node.first(&#x27;number&#x27;).content[1] === &#x27;0&#x27;) {
+    // then we donâ€™t have an option
+    if (node.is('percentage') &amp;&amp; node.first('number').content[1] === '0') {
       detected.push(false);
       return;
     }
 
-    if (node.is(&#x27;dimension&#x27;) &#x26;&#x26; node.first(&#x27;number&#x27;).content === &#x27;0&#x27; &#x26;&#x26; node.first(&#x27;ident&#x27;).content !== &#x27;deg&#x27;) {
+    if (node.is('dimension') &amp;&amp; node.first('number').content === '0' &amp;&amp; node.first('ident').content !== 'deg') {
       detected.push(false);
       return;
     }
 
     // If we see a zero and previous node is not percentage
     // or dimension, then we have an option
-    if (node.is(&#x27;number&#x27;) &#x26;&#x26; node.content === &#x27;0&#x27; &#x26;&#x26; !parent.is(&#x27;percentage&#x27;) &#x26;&#x26; !parent.is(&#x27;dimension&#x27;)) {
+    if (node.is('number') &amp;&amp; node.content === '0' &amp;&amp; !parent.is('percentage') &amp;&amp; !parent.is('dimension')) {
       detected.push(true);
     }
   });
@@ -6079,21 +6072,21 @@ _readFile(path) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">process = function (ast) {
-  var UNITS = [&#x27;cm&#x27;, &#x27;em&#x27;, &#x27;ex&#x27;, &#x27;pt&#x27;, &#x27;px&#x27;];
+  var UNITS = ['cm', 'em', 'ex', 'pt', 'px'];
 
-  ast.traverseByTypes([&#x27;value&#x27;, &#x27;parentheses&#x27;], function (node) {
+  ast.traverseByTypes(['value', 'parentheses'], function (node) {
     node.forEach(function (value) {
-      if (typeof value === &#x27;string&#x27;) return;
+      if (typeof value === 'string') return;
 
-      if (value.is(&#x27;dimension&#x27;)) {
-        var unit = value.first(&#x27;ident&#x27;).content;
-        if (value.first(&#x27;number&#x27;).content === &#x27;0&#x27; &#x26;&#x26; UNITS.indexOf(unit) !== -1) {
+      if (value.is('dimension')) {
+        var unit = value.first('ident').content;
+        if (value.first('number').content === '0' &amp;&amp; UNITS.indexOf(unit) !== -1) {
           value.removeChild(1);
         }
-      } else if (value.is(&#x27;percentage&#x27;)) {
-        var number = value.first(&#x27;number&#x27;).content;
-        if (number === &#x27;0&#x27;) {
-          value.type = &#x27;number&#x27;;
+      } else if (value.is('percentage')) {
+        var number = value.first('number').content;
+        if (number === '0') {
+          value.type = 'number';
           value.content = number;
         }
       }
@@ -6106,7 +6099,7 @@ _processTree(ast) {
   let config = this.config;
 
   this.plugins.filter(function (plugin) {
-    return plugin.value !== null &#x26;&#x26; typeof plugin.process === &#x27;function&#x27; &#x26;&#x26; plugin.syntax.indexOf(
+    return plugin.value !== null &amp;&amp; typeof plugin.process === 'function' &amp;&amp; plugin.syntax.indexOf(
 ast.syntax) !== -1;
   }).forEach(function (plugin) {
     plugin.<span class="apidocCodeKeywordSpan">process</span>(ast, config);
@@ -6116,7 +6109,7 @@ ast.syntax) !== -1;
 }
 
 _readFile(path) {
-  return new Promise((resolve, reject) =&#x3e; {
+  return new Promise((resolve, reject) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -6135,3 +6128,4 @@ _readFile(path) {
     ]
 </div>
 </div>
+</body></html>
